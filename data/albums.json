@@ -368,5 +368,105 @@
     "tracks": ["Shine On You Crazy Diamond (Parts I-V)","Welcome to the Machine","Have a Cigar","Wish You Were Here","Shine On You Crazy Diamond (Parts VI-IX)"],
     "review": "A profoundly moving elegy to lost friends and vanished innocence.",
     "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "To Pimp a Butterfly",
+    "artist": "Kendrick Lamar",
+    "year": 2015,
+    "genre": "Hip-Hop / Jazz Rap",
+    "tags": ["political","intense","jazz","soulful","urban","angry","thoughtful","bold","poetic","powerful","funky","visionary"],
+    "tracks": ["Wesley's Theory","King Kunta","These Walls","Alright","The Blacker the Berry"],
+    "review": "A fearless, genre-bending statement on race, fame, and identity that sounds bigger with every listen.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars",
+    "artist": "David Bowie",
+    "year": 1972,
+    "genre": "Glam Rock",
+    "tags": ["space","theatrical","glam","dramatic","rebellious","futuristic","wild","iconic","bold","storytelling","creative","electric"],
+    "tracks": ["Five Years","Soul Love","Moonage Daydream","Starman","Rock 'n' Roll Suicide"],
+    "review": "Bowie turns apocalypse into spectacle on a glam-rock classic that still feels from another planet.",
+    "reviewer": "NME"
+  },
+  {
+    "title": "Disintegration",
+    "artist": "The Cure",
+    "year": 1989,
+    "genre": "Gothic Rock / Dream Pop",
+    "tags": ["rain","night","melancholy","romantic","dark","atmospheric","dreamy","heartbreak","lonely","moody","ethereal","intense"],
+    "tracks": ["Plainsong","Pictures of You","Lovesong","Fascination Street","Disintegration"],
+    "review": "A grand and heartbreaking cathedral of sound where sorrow becomes strangely beautiful.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Back to Black",
+    "artist": "Amy Winehouse",
+    "year": 2006,
+    "genre": "Soul / R&B",
+    "tags": ["heartbreak","retro","smoky","night","sad","raw","passionate","vintage","dramatic","soulful","confessional","timeless"],
+    "tracks": ["Rehab","You Know I'm No Good","Back to Black","Love Is a Losing Game","Tears Dry on Their Own"],
+    "review": "Winehouse channels classic soul into brutally honest modern confessionals with unmatched charisma.",
+    "reviewer": "The Guardian"
+  },
+  {
+    "title": "Souvlaki",
+    "artist": "Slowdive",
+    "year": 1993,
+    "genre": "Shoegaze / Dream Pop",
+    "tags": ["dreamy","foggy","soft","ethereal","night","ocean","floating","melancholy","ambient","romantic","hazy","introspective"],
+    "tracks": ["Alison","Machine Gun","40 Days","When the Sun Hits","Dagger"],
+    "review": "A weightless shoegaze landmark that turns blurred guitars into pure atmosphere.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Discovery",
+    "artist": "Daft Punk",
+    "year": 2001,
+    "genre": "Electronic / House",
+    "tags": ["party","dance","robot","bright","fun","nostalgic","spacey","sparkly","euphoric","nightlife","retro","playful"],
+    "tracks": ["One More Time","Aerodynamic","Digital Love","Harder, Better, Faster, Stronger","Something About Us"],
+    "review": "A candy-colored dance classic that made electronic music feel both futuristic and deeply human.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Grace",
+    "artist": "Jeff Buckley",
+    "year": 1994,
+    "genre": "Alternative Rock / Folk",
+    "tags": ["emotional","romantic","haunting","dramatic","angelic","intense","poetic","heartbreak","rain","spiritual","moody","tender"],
+    "tracks": ["Mojo Pin","Grace","Last Goodbye","Lover, You Should've Come Over","Hallelujah"],
+    "review": "A singular album of staggering vocal power and emotional depth that only grows more mythic.",
+    "reviewer": "NME"
+  },
+  {
+    "title": "The College Dropout",
+    "artist": "Kanye West",
+    "year": 2004,
+    "genre": "Hip-Hop",
+    "tags": ["soulful","ambitious","funny","confident","warm","creative","college","honest","hustle","playful","bold","classic"],
+    "tracks": ["We Don't Care","All Falls Down","Jesus Walks","Slow Jamz","Through the Wire"],
+    "review": "An inventive debut that rewired mainstream rap with wit, vulnerability, and soul-sampling brilliance.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Heaven or Las Vegas",
+    "artist": "Cocteau Twins",
+    "year": 1990,
+    "genre": "Dream Pop",
+    "tags": ["ethereal","angelic","dreamy","romantic","floating","soft","lush","colorful","mystical","heavenly","gentle","atmospheric"],
+    "tracks": ["Cherry-coloured Funk","Pitch the Baby","Iceblink Luck","Heaven or Las Vegas","Frou-frou Foxes in Midsummer Fires"],
+    "review": "A radiant dream-pop jewel where language dissolves into pure feeling and color.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Blackstar",
+    "artist": "David Bowie",
+    "year": 2016,
+    "genre": "Art Rock / Jazz",
+    "tags": ["dark","cosmic","mysterious","jazz","experimental","haunting","dramatic","farewell","bold","spiritual","surreal","intense"],
+    "tracks": ["Blackstar","'Tis a Pity She Was a Whore","Lazarus","Sue (Or in a Season of Crime)","I Can't Give Everything Away"],
+    "review": "A daring final statement that transforms mortality into something strange, elegant, and transcendent.",
+    "reviewer": "The Guardian"
   }
 ]
