@@ -1,4 +1,4 @@
-# Emojify ✨
+# E-Mood-ji ✨
 
 Turn your emojis into something magical — albums, bedtime stories, and constellations.
 
