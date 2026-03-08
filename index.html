@@ -362,9 +362,9 @@ let constellationsDB = [];
 
 async function loadData() {
   const [emojiRes, albumsRes, constRes] = await Promise.all([
-    fetch('data/emojiMap.json'),
-    fetch('data/albums.json'),
-    fetch('data/constellations.json')
+    fetch('emojiMap.json'),
+    fetch('albums.json'),
+    fetch('constellations.json')
   ]);
   emojiMap = await emojiRes.json();
   albumsDB = await albumsRes.json();
