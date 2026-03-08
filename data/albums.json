@@ -468,5 +468,35 @@
     "tracks": ["Blackstar","'Tis a Pity She Was a Whore","Lazarus","Sue (Or in a Season of Crime)","I Can't Give Everything Away"],
     "review": "A daring final statement that transforms mortality into something strange, elegant, and transcendent.",
     "reviewer": "The Guardian"
+  },
+  {
+    "title": "Transatlanticism",
+    "artist": "Death Cab for Cutie",
+    "year": 2003,
+    "genre": "Indie Rock / Emo",
+    "tags": ["melancholy","distance","love","ocean","night","longing","emotional","introspective","bittersweet","warm","rain","nostalgic"],
+    "tracks": ["The New Year","Lightness","Title and Registration","The Sound of Settling","Transatlanticism"],
+    "review": "A defining indie album about distance and devotion, written in slow-burning emotional waves.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Plans",
+    "artist": "Death Cab for Cutie",
+    "year": 2005,
+    "genre": "Indie Rock",
+    "tags": ["romantic","heartbreak","autumn","quiet","tender","emotional","soft","reflective","wistful","gentle","rainy","poetic"],
+    "tracks": ["Marching Bands of Manhattan","Soul Meets Body","Summer Skin","I Will Follow You into the Dark","Crooked Teeth"],
+    "review": "Polished but deeply heartfelt, Plans turns private anxieties into songs that feel universally human.",
+    "reviewer": "NME"
+  },
+  {
+    "title": "Narrow Stairs",
+    "artist": "Death Cab for Cutie",
+    "year": 2008,
+    "genre": "Indie Rock / Alternative",
+    "tags": ["moody","brooding","night","dark","driving","restless","urban","intense","lonely","atmospheric","cool","bittersweet"],
+    "tracks": ["Bixby Canyon Bridge","I Will Possess Your Heart","No Sunlight","Cath...","Grapevine Fires"],
+    "review": "A darker, more expansive chapter that balances driving rhythms with the band's signature ache.",
+    "reviewer": "The Guardian"
   }
 ]
