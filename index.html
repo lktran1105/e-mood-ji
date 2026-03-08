@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emojify — Turn Emojis Into Magic</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amber: #F59E0B;
+    --amber-light: #FCD34D;
+    --coral: #F97316;
+    --coral-deep: #EA580C;
+    --pink: #EC4899;
+    --warm-bg: #FFFBF5;
+    --card-bg: #FFF9F0;
+    --card-border: #FDE8CD;
+    --text-primary: #1C1917;
+    --text-secondary: #78716C;
+    --text-muted: #A8A29E;
+    --gradient-start: #F97316;
+    --gradient-mid: #F472B6;
+    --gradient-end: #FB923C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; }
+
+  /* Floating background orbs */
+  .bg-orbs {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .bg-orbs .orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15;
+    animation: floatOrb 20s ease-in-out infinite;
+  }
+  .bg-orbs .orb:nth-child(1) { width: 400px; height: 400px; background: var(--coral); top: -100px; right: -100px; animation-delay: 0s; }
+  .bg-orbs .orb:nth-child(2) { width: 300px; height: 300px; background: var(--pink); bottom: -50px; left: -50px; animation-delay: -7s; }
+  .bg-orbs .orb:nth-child(3) { width: 250px; height: 250px; background: var(--amber); top: 50%; left: 50%; animation-delay: -14s; }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+
+  /* Settings button */
+  .settings-btn {
+    position: fixed; top: 20px; right: 20px; z-index: 100;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(255,255,255,0.8); border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s; font-size: 18px;
+  }
+  .settings-btn:hover { transform: rotate(60deg); background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+
+  /* API Key Modal */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px);
+    z-index: 200; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: auto; }
+  .modal {
+    background: white; border-radius: 24px; padding: 36px; max-width: 440px; width: 90%;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.15); transform: translateY(20px); transition: transform 0.3s;
+  }
+  .modal-overlay.active .modal { transform: translateY(0); }
+  .modal h3 { font-size: 1.3rem; margin-bottom: 8px; }
+  .modal p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5; }
+  .modal input {
+    width: 100%; padding: 14px 16px; border-radius: 14px;
+    border: 2px solid var(--card-border); font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; outline: none; transition: border-color 0.3s;
+  }
+  .modal input:focus { border-color: var(--coral); }
+  .modal-actions { display: flex; gap: 10px; margin-top: 16px; }
+  .modal-actions button {
+    flex: 1; padding: 12px; border-radius: 14px; font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; border: none;
+  }
+  .btn-save {
+    background: linear-gradient(135deg, var(--coral), var(--pink));
+    color: white;
+  }
+  .btn-save:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(249,115,22,0.4); }
+  .btn-cancel { background: #F5F5F4; color: var(--text-secondary); }
+  .btn-cancel:hover { background: #E7E5E4; }
+
+  /* Main container */
+  .container {
+    position: relative; z-index: 1;
+    max-width: 800px; margin: 0 auto; padding: 60px 24px 80px;
+  }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 48px; }
+  .header .logo {
+    font-family: 'Space Grotesk', sans-serif; font-size: 2.8rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--coral), var(--pink), var(--amber));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 8px;
+  }
+  .header .tagline { color: var(--text-secondary); font-size: 1.1rem; }
+
+  /* Emoji input area */
+  .input-section {
+    background: white; border-radius: 28px; padding: 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid var(--card-border);
+    margin-bottom: 32px;
+  }
+  .input-section label {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem;
+    display: block; margin-bottom: 4px;
+  }
+  .input-section .hint { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 16px; }
+
+  .emoji-input-wrap {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+  }
+  .emoji-display {
+    flex: 1; display: flex; gap: 8px; min-height: 64px; padding: 12px 16px;
+    background: var(--card-bg); border-radius: 18px; border: 2px dashed var(--card-border);
+    align-items: center; flex-wrap: wrap; transition: border-color 0.3s;
+  }
+  .emoji-display.active { border-color: var(--amber); border-style: solid; }
+  .emoji-display .placeholder { color: var(--text-muted); font-size: 0.9rem; }
+
+  .emoji-chip {
+    font-size: 2rem; background: white; border-radius: 14px; padding: 6px 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: relative;
+    animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer; transition: transform 0.2s;
+  }
+  .emoji-chip:hover { transform: scale(1.1); }
+  .emoji-chip:hover::after {
+    content: '×'; position: absolute; top: -4px; right: -4px;
+    background: #EF4444; color: white; font-size: 0.65rem; width: 16px; height: 16px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: sans-serif;
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .emoji-picker-trigger {
+    width: 56px; height: 56px; border-radius: 16px; border: 2px solid var(--card-border);
+    background: white; font-size: 1.5rem; cursor: pointer; transition: all 0.3s;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .emoji-picker-trigger:hover { border-color: var(--coral); transform: scale(1.05); }
+  .emoji-picker-trigger:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* Emoji picker dropdown */
+  .emoji-picker-container { position: relative; }
+  .emoji-picker {
+    position: absolute; top: 64px; right: 0; z-index: 50;
+    background: white; border-radius: 20px; padding: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12); border: 1px solid var(--card-border);
+    width: 320px; max-height: 300px; overflow-y: auto;
+    opacity: 0; pointer-events: none; transform: translateY(-10px); transition: all 0.3s;
+  }
+  .emoji-picker.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .emoji-picker-search {
+    width: 100%; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--card-border);
+    font-size: 0.9rem; margin-bottom: 12px; outline: none; font-family: 'DM Sans', sans-serif;
+  }
+  .emoji-picker-search:focus { border-color: var(--coral); }
+  .emoji-picker-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
+  }
+  .emoji-picker-grid button {
+    font-size: 1.4rem; padding: 6px; border: none; background: none;
+    border-radius: 8px; cursor: pointer; transition: background 0.2s;
+  }
+  .emoji-picker-grid button:hover { background: var(--card-bg); }
+  .emoji-category-label {
+    font-size: 0.75rem; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin: 8px 0 4px; grid-column: 1 / -1;
+  }
+
+  /* Mode selector */
+  .mode-selector { display: flex; gap: 10px; flex-wrap: wrap; }
+  .mode-btn {
+    flex: 1; min-width: 120px; padding: 14px 16px; border-radius: 16px;
+    border: 2px solid var(--card-border); background: white;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+    font-size: 0.9rem; cursor: pointer; transition: all 0.3s;
+    display: flex; align-items: center; gap: 8px; justify-content: center;
+  }
+  .mode-btn:hover { border-color: var(--amber); }
+  .mode-btn.active {
+    border-color: var(--coral); background: linear-gradient(135deg, #FFF7ED, #FFF1F2);
+    color: var(--coral-deep);
+  }
+  .mode-btn .mode-icon { font-size: 1.2rem; }
+
+  /* Generate button */
+  .generate-section { text-align: center; margin-bottom: 32px; }
+  .generate-btn {
+    padding: 16px 48px; border-radius: 20px; border: none;
+    background: linear-gradient(135deg, var(--coral), var(--pink));
+    color: white; font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1.1rem; cursor: pointer;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .generate-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(249,115,22,0.4); }
+  .generate-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .generate-btn .shimmer {
+    position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+  }
+  .generate-btn:not(:disabled):hover .shimmer { animation: shimmer 1.5s infinite; }
+  @keyframes shimmer { 100% { transform: translateX(100%); } }
+
+  /* Loading state */
+  .loading-container {
+    text-align: center; padding: 48px; display: none;
+  }
+  .loading-container.active { display: block; }
+  .loading-dots { display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; }
+  .loading-dots span {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--coral); animation: bounce 1.4s ease-in-out infinite;
+  }
+  .loading-dots span:nth-child(2) { animation-delay: 0.16s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.32s; }
+  @keyframes bounce {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+  }
+  .loading-container p { color: var(--text-secondary); font-size: 0.95rem; }
+
+  /* Result cards */
+  .result-container { display: none; }
+  .result-container.active { display: block; animation: fadeUp 0.5s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Album card */
+  .album-card {
+    border-radius: 28px; overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--card-border);
+  }
+  .album-header {
+    background: linear-gradient(135deg, var(--coral), var(--pink), var(--amber));
+    padding: 36px 32px; text-align: center;
+  }
+  .album-emojis { font-size: 2.8rem; letter-spacing: 8px; margin-bottom: 8px; }
+  .album-badge {
+    display: inline-block; background: rgba(255,255,255,0.25); border-radius: 20px;
+    padding: 4px 14px; font-size: 0.8rem; color: white; backdrop-filter: blur(5px);
+  }
+  .album-body { background: var(--card-bg); padding: 32px; }
+  .album-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
+  .album-artist { color: var(--coral); font-weight: 600; margin-bottom: 2px; }
+  .album-year { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 4px; }
+  .album-genre { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px; }
+  .album-tracklist { list-style: none; margin-bottom: 24px; }
+  .album-tracklist li {
+    padding: 10px 0; border-bottom: 1px solid var(--card-border);
+    display: flex; align-items: center; gap: 12px; font-size: 0.95rem;
+  }
+  .album-tracklist li:last-child { border-bottom: none; }
+  .track-num { color: var(--text-muted); font-size: 0.85rem; min-width: 20px; }
+  .track-emoji { font-size: 1.2rem; }
+  .album-review {
+    background: white; border-radius: 16px; padding: 20px;
+    border: 1px solid var(--card-border);
+  }
+  .album-review p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; font-style: italic; }
+  .album-review .reviewer { margin-top: 10px; font-style: normal; font-weight: 600; color: var(--text-primary); }
+
+  /* Story card */
+  .story-card {
+    background: white; border-radius: 28px; padding: 36px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--card-border);
+  }
+  .story-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .story-moon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--amber-light), var(--coral));
+    display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+  }
+  .story-meta h3 { font-size: 1.3rem; }
+  .story-meta span { color: var(--text-muted); font-size: 0.85rem; }
+  .story-emojis { font-size: 2rem; letter-spacing: 6px; text-align: center; margin-bottom: 20px; }
+  .story-text { color: var(--text-secondary); line-height: 1.8; font-size: 1rem; white-space: pre-wrap; }
+  .story-divider {
+    text-align: center; color: var(--text-muted); margin: 16px 0; letter-spacing: 4px;
+  }
+
+  /* Constellation card */
+  .constellation-card {
+    border-radius: 28px; overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--card-border);
+  }
+  .constellation-sky {
+    background: linear-gradient(180deg, #0F172A, #1E293B, #334155);
+    padding: 40px; position: relative; min-height: 350px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .constellation-canvas { position: relative; width: 280px; height: 280px; }
+  .constellation-star {
+    position: absolute; font-size: 2rem;
+    animation: twinkle 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(251,191,36,0.6));
+    z-index: 2;
+  }
+  .constellation-star:nth-child(2) { animation-delay: 0.5s; }
+  .constellation-star:nth-child(3) { animation-delay: 1s; }
+  .constellation-star:nth-child(4) { animation-delay: 1.5s; }
+  .constellation-star:nth-child(5) { animation-delay: 2s; }
+  @keyframes twinkle {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.8; }
+  }
+  .constellation-lines {
+    position: absolute; inset: 0; z-index: 1;
+  }
+  .constellation-lines line {
+    stroke: rgba(251,191,36,0.35); stroke-width: 1.5;
+    stroke-dasharray: 4 4;
+  }
+  .bg-stars {
+    position: absolute; inset: 0; overflow: hidden;
+  }
+  .bg-star {
+    position: absolute; width: 2px; height: 2px; background: white;
+    border-radius: 50%; opacity: 0.4;
+  }
+  .constellation-info { background: var(--card-bg); padding: 28px 32px; }
+  .constellation-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+  .constellation-latin { color: var(--coral); font-size: 0.9rem; font-style: italic; margin-bottom: 12px; }
+  .constellation-desc { color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; }
+  .constellation-legend {
+    display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px; background: white;
+    padding: 6px 12px; border-radius: 10px; font-size: 0.8rem;
+    border: 1px solid var(--card-border);
+  }
+  .legend-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--amber);
+  }
+
+  /* Regenerate button */
+  .regen-btn {
+    display: block; margin: 24px auto 0; padding: 12px 28px;
+    border-radius: 14px; border: 2px solid var(--card-border);
+    background: white; font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; cursor: pointer; transition: all 0.3s;
+    font-size: 0.9rem; color: var(--text-secondary);
+  }
+  .regen-btn:hover { border-color: var(--coral); color: var(--coral); }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container { padding: 40px 16px 60px; }
+    .header .logo { font-size: 2rem; }
+    .input-section { padding: 24px 20px; }
+    .mode-btn { min-width: 100px; padding: 12px; font-size: 0.82rem; }
+    .album-body, .constellation-info { padding: 24px 20px; }
+    .story-card { padding: 24px 20px; }
+    .emoji-picker { width: 280px; right: -40px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-orbs">
+  <div class="orb"></div><div class="orb"></div><div class="orb"></div>
+</div>
+
+<button class="settings-btn" onclick="openModal()" title="API Key Settings">&#9881;</button>
+
+<!-- API Key Modal -->
+<div class="modal-overlay" id="apiModal">
+  <div class="modal">
+    <h3>Gemini API Key</h3>
+    <p>Enter your Google Gemini API key. It's stored locally in your browser and never sent anywhere except to Google's API.</p>
+    <input type="password" id="apiKeyInput" placeholder="AIza..." autocomplete="off">
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveApiKey()">Save Key</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">Emojify</div>
+    <div class="tagline">Turn your emojis into something magical</div>
+  </div>
+
+  <!-- Input section -->
+  <div class="input-section">
+    <label>Drop your emojis</label>
+    <div class="hint">Pick 3 to 5 emojis and watch the magic happen</div>
+
+    <div class="emoji-input-wrap">
+      <div class="emoji-display" id="emojiDisplay">
+        <span class="placeholder" id="emojiPlaceholder">Tap + to add emojis...</span>
+      </div>
+      <div class="emoji-picker-container">
+        <button class="emoji-picker-trigger" id="pickerTrigger" onclick="togglePicker()">+</button>
+        <div class="emoji-picker" id="emojiPicker">
+          <input type="text" class="emoji-picker-search" id="emojiSearch" placeholder="Search emojis..." oninput="filterEmojis()">
+          <div class="emoji-picker-grid" id="emojiGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mode-selector">
+      <button class="mode-btn active" data-mode="album" onclick="selectMode('album')">
+        <span class="mode-icon">&#127925;</span> Album
+      </button>
+      <button class="mode-btn" data-mode="story" onclick="selectMode('story')">
+        <span class="mode-icon">&#127769;</span> Bedtime Story
+      </button>
+      <button class="mode-btn" data-mode="constellation" onclick="selectMode('constellation')">
+        <span class="mode-icon">&#11088;</span> Constellation
+      </button>
+    </div>
+  </div>
+
+  <!-- Generate -->
+  <div class="generate-section">
+    <button class="generate-btn" id="generateBtn" onclick="generate()" disabled>
+      <span class="shimmer"></span>
+      Generate Magic &#10024;
+    </button>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-container" id="loading">
+    <div class="loading-dots"><span></span><span></span><span></span></div>
+    <p id="loadingText">Conjuring something special...</p>
+  </div>
+
+  <!-- Results -->
+  <div class="result-container" id="resultContainer"></div>
+</div>
+
+<script>
+// ============ STATE ============
+let selectedEmojis = [];
+let currentMode = 'album';
+let isGenerating = false;
+
+// ============ EMOJI DATA ============
+const emojiCategories = {
+  "Smileys": ["😀","😃","😄","😁","😆","😅","🤣","😂","🙂","😉","😊","😇","🥰","😍","🤩","😘","😗","😚","😙","🥲","😋","😛","😜","🤪","😝","🤑","🤗","🤭","🤫","🤔","😐","😑","😶","😏","😒","🙄","😬","😮‍💨","🤥","😌","😔","😪","🤤","😴","😷","🤒","🤕","🤢","🤮","🥵","🥶","🥴","😵","🤯","🤠","🥳","🥸","😎","🤓","🧐","😕","😟","🙁","😮","😯","😲","😳","🥺","🥹","😦","😧","😨","😰","😥","😢","😭","😱","😖","😣","😞","😓","😩","😫","🥱","😤","😡","😠","🤬","😈","👿","💀","☠️","💩","🤡","👹","👺","👻","👽","👾","🤖"],
+  "Gestures": ["👋","🤚","🖐️","✋","🖖","👌","🤌","🤏","✌️","🤞","🤟","🤘","🤙","👈","👉","👆","🖕","👇","☝️","👍","👎","✊","👊","🤛","🤜","👏","🙌","👐","🤲","🤝","🙏","✍️","💅","🤳","💪","🦾"],
+  "Hearts": ["❤️","🧡","💛","💚","💙","💜","🖤","🤍","🤎","💔","❤️‍🔥","❤️‍🩹","❣️","💕","💞","💓","💗","💖","💘","💝","💟"],
+  "Animals": ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐻‍❄️","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤","🐣","🦆","🦅","🦉","🦇","🐺","🐗","🐴","🦄","🐝","🪱","🐛","🦋","🐌","🐞","🐜","🪰","🪲","🪳","🦟","🦗","🕷️","🦂","🐢","🐍","🦎","🦖","🦕","🐙","🦑","🦐","🦞","🦀","🐡","🐠","🐟","🐬","🐳","🐋","🦈","🦭","🐊","🐅","🐆","🦓","🦍","🦧","🐘","🦛","🦏","🐪","🐫","🦒","🦘","🦬","🐃","🐂","🐄","🐎","🐖","🐏","🐑","🦙","🐐","🦌","🐕","🐩","🦮","🐕‍🦺","🐈","🐈‍⬛","🪶","🐓","🦃","🦤","🦚","🦜","🦢","🦩","🕊️","🐇","🦝","🦨","🦡","🦫","🦦","🦥","🐁","🐀","🐿️","🦔"],
+  "Nature": ["🌵","🎄","🌲","🌳","🌴","🪵","🌱","🌿","☘️","🍀","🎍","🪴","🎋","🍃","🍂","🍁","🌾","🌺","🌻","🌹","🥀","🌷","🌼","🌸","💐","🍄","🌰","🐚","🪸","🪨","🌎","🌍","🌏","🌕","🌖","🌗","🌘","🌑","🌒","🌓","🌔","🌙","🌚","🌛","🌜","☀️","🌝","🌞","⭐","🌟","🌠","☁️","⛅","🌤️","🌥️","🌦️","🌧️","⛈️","🌩️","🌨️","❄️","☃️","⛄","🌬️","💨","🌪️","🌫️","🌈","🔥","💧","🌊","🎆","🎇","✨","🎑"],
+  "Food": ["🍏","🍎","🍐","🍊","🍋","🍌","🍉","🍇","🍓","🫐","🍈","🍒","🍑","🥭","🍍","🥥","🥝","🍅","🍆","🥑","🥦","🥬","🥒","🌶️","🫑","🌽","🥕","🫒","🧄","🧅","🥔","🍠","🥐","🥯","🍞","🥖","🥨","🧀","🥚","🍳","🧈","🥞","🧇","🥓","🥩","🍗","🍖","🦴","🌭","🍔","🍟","🍕","🫓","🥪","🥙","🧆","🌮","🌯","🫔","🥗","🥘","🫕","🍝","🍜","🍲","🍛","🍣","🍱","🥟","🦪","🍤","🍙","🍚","🍘","🍥","🥠","🥮","🍢","🍡","🍧","🍨","🍦","🥧","🧁","🍰","🎂","🍮","🍭","🍬","🍫","🍿","🍩","🍪","🌰","🥜","🍯","🥛","🍼","🫖","☕","🍵","🧃","🥤","🧋","🍶","🍺","🍻","🥂","🍷","🥃","🍸","🍹","🧉","🍾","🧊","🥄","🍴","🍽️","🥣","🥡","🥢"],
+  "Activities": ["⚽","🏀","🏈","⚾","🥎","🎾","🏐","🏉","🥏","🎱","🪀","🏓","🏸","🏒","🏑","🥍","🏏","🪃","🥅","⛳","🪁","🏹","🎣","🤿","🥊","🥋","🎽","🛹","🛼","🛷","⛸️","🥌","🎿","⛷️","🏂","🪂","🏋️","🤸","🤺","🤾","🏌️","🏇","🧘","🏄","🏊","🤽","🚣","🧗","🚵","🚴","🏆","🥇","🥈","🥉","🏅","🎖️","🏵️","🎗️","🎫","🎟️","🎪","🤹","🎭","🩰","🎨","🎬","🎤","🎧","🎼","🎹","🥁","🪘","🎷","🎺","🪗","🎸","🪕","🎻","🎲","♟️","🎯","🎳","🎮","🕹️","🧩"],
+  "Travel": ["🚗","🚕","🚙","🚌","🚎","🏎️","🚓","🚑","🚒","🚐","🛻","🚚","🚛","🚜","🛵","🏍️","🛺","🚲","🛴","🚨","🚔","🚍","🚘","🚖","✈️","🛫","🛬","🛩️","💺","🛰️","🚀","🛸","🚁","🛶","⛵","🚤","🛥️","🛳️","🚢","⚓","🗼","🏰","🏯","🗽","🎡","🎢","🎠","⛲","⛱️","🏖️","🏝️","🏜️","🌋","⛰️","🏔️","🗻","🏕️","🛖","🏠","🏡","🏗️","🏭","🏢","🏬","🏣","🏤","🏥","🏦","🏨","🏪","🏫","🏩","💒","🏛️","⛪","🕌","🕍","🛕","🕋"],
+  "Objects": ["⌚","📱","📲","💻","⌨️","🖥️","🖨️","🖱️","🖲️","💽","💾","💿","📀","🧮","🎥","🎞️","📽️","📺","📷","📸","📹","📼","🔍","🔎","🕯️","💡","🔦","🏮","🪔","📔","📕","📖","📗","📘","📙","📚","📓","📒","📃","📜","📄","📰","🗞️","📑","🔖","🏷️","💰","🪙","💴","💵","💶","💷","💸","💳","🧾","💹","✉️","📧","📨","📩","📤","📥","📦","📫","📪","📬","📭","📮","🗳️","✏️","✒️","🖋️","🖊️","🖌️","🖍️","📝","💼","📁","📂","🗂️","📅","📆","🗒️","🗓️","📇","📈","📉","📊","📋","📌","📍","📎","🖇️","📏","📐","✂️","🗃️","🗄️","🗑️","🔒","🔓","🔏","🔐","🔑","🗝️","🔨","🪓","⛏️","⚒️","🛠️","🗡️","⚔️","🔫","🪃","🛡️","🪚","🔧","🪛","🔩","⚙️","🗜️","⚖️","🦯","🔗","⛓️","🪝","🧰","🧲","🪜","🧪","🧫","🧬","🔬","🔭","📡","💉","🩸","💊","🩹","🩼","🩺","🩻","🚪","🛗","🪞","🪟","🛏️","🛋️","🪑","🚽","🪠","🚿","🛁","🪤","🪒","🧴","🧷","🧹","🧺","🧻","🪣","🧼","🫧","🪥","🧽","🧯","🛒","🚬","⚰️","🪦","⚱️","🗿","🪧","🪪"],
+  "Symbols": ["💯","🔴","🟠","🟡","🟢","🔵","🟣","⚫","⚪","🟤","🔺","🔻","🔸","🔹","🔶","🔷","💠","🔘","🏁","🚩","🎌","🏴","🏳️","🏳️‍🌈","🏴‍☠️","✝️","☪️","🕉️","☸️","✡️","🔯","🕎","☯️","☦️","🛐","⛎","♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓","🆔","⚛️","🉑","☢️","☣️","📴","📳","🈶","🈚","🈸","🈺","🈷️","✴️","🆚","💮","🉐","㊙️","㊗️","🈴","🈵","🈹","🈲","🅰️","🅱️","🆎","🆑","🅾️","🆘","❌","⭕","🛑","⛔","📛","🚫","💢","♨️","🚷","🚯","🚳","🚱","🔞","📵","🚭","❗","❕","❓","❔","‼️","⁉️","💤","♻️","✅","🈯","💹","❇️","✳️","❎","🌐","💠","Ⓜ️","🌀","💤","🏧","🚾","♿","🅿️","🛗","🈳","🈂️","🛂","🛃","🛄","🛅","🚹","🚺","🚼","⚧️","🚻","🚮","🎦","📶","🈁","🔣","ℹ️","🔤","🔡","🔠","🆖","🆗","🆙","🆒","🆕","🆓","0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","🔟","🔢","#️⃣","*️⃣","⏏️","▶️","⏸️","⏯️","⏹️","⏺️","⏭️","⏮️","⏩","⏪","⏫","⏬","◀️","🔼","🔽","➡️","⬅️","⬆️","⬇️","↗️","↘️","↙️","↖️","↕️","↔️","↪️","↩️","⤴️","⤵️","🔀","🔁","🔂","🔄","🔃","🎵","🎶","✖️","➕","➖","➗","♾️","💲","💱","™️","©️","®️","〰️","➰","➿","🔚","🔙","🔛","🔝","🔜","✔️","☑️","🔘","🔴","🟠","🟡","🟢","🔵","🟣","⚫","⚪","🟤","🔺","🔻","🔸","🔹","🔶","🔷","🔲","🔳","▪️","▫️","◾","◽","◼️","◻️","🟥","🟧","🟨","🟩","🟦","🟪","⬛","⬜","🟫","🔈","🔇","🔉","🔊","🔔","🔕","📣","📢","💬","💭","🗯️","♠️","♣️","♥️","♦️","🃏","🎴","🀄","🕐","🕑","🕒","🕓","🕔","🕕","🕖","🕗","🕘","🕙","🕚","🕛"]
+};
+
+// ============ EMOJI PICKER ============
+function buildEmojiPicker() {
+  const grid = document.getElementById('emojiGrid');
+  grid.innerHTML = '';
+  for (const [cat, emojis] of Object.entries(emojiCategories)) {
+    const label = document.createElement('div');
+    label.className = 'emoji-category-label';
+    label.textContent = cat;
+    grid.appendChild(label);
+    emojis.forEach(e => {
+      const btn = document.createElement('button');
+      btn.textContent = e;
+      btn.onclick = () => addEmoji(e);
+      btn.dataset.emoji = e;
+      grid.appendChild(btn);
+    });
+  }
+}
+
+function filterEmojis() {
+  const q = document.getElementById('emojiSearch').value.toLowerCase();
+  const btns = document.querySelectorAll('#emojiGrid button');
+  const labels = document.querySelectorAll('.emoji-category-label');
+  if (!q) { btns.forEach(b => b.style.display = ''); labels.forEach(l => l.style.display = ''); return; }
+  labels.forEach(l => l.style.display = 'none');
+  btns.forEach(b => b.style.display = 'none');
+  // Simple: show all if search is short
+  btns.forEach(b => {
+    if (b.dataset.emoji && b.dataset.emoji.includes(q)) b.style.display = '';
+  });
+  // Always show all for now since emoji search by name is complex
+  if (q.length > 0) btns.forEach(b => b.style.display = '');
+}
+
+function togglePicker() {
+  if (selectedEmojis.length >= 5) return;
+  const picker = document.getElementById('emojiPicker');
+  picker.classList.toggle('open');
+  if (picker.classList.contains('open')) {
+    document.getElementById('emojiSearch').focus();
+  }
+}
+
+function addEmoji(emoji) {
+  if (selectedEmojis.length >= 5) return;
+  selectedEmojis.push(emoji);
+  renderEmojis();
+  if (selectedEmojis.length >= 5) {
+    document.getElementById('emojiPicker').classList.remove('open');
+  }
+  updateGenerateBtn();
+}
+
+function removeEmoji(index) {
+  selectedEmojis.splice(index, 1);
+  renderEmojis();
+  updateGenerateBtn();
+}
+
+function renderEmojis() {
+  const display = document.getElementById('emojiDisplay');
+  const placeholder = document.getElementById('emojiPlaceholder');
+  document.querySelectorAll('.emoji-chip').forEach(el => el.remove());
+  if (selectedEmojis.length === 0) { placeholder.style.display = ''; }
+  else { placeholder.style.display = 'none'; }
+  selectedEmojis.forEach((e, i) => {
+    const chip = document.createElement('span');
+    chip.className = 'emoji-chip';
+    chip.textContent = e;
+    chip.onclick = () => removeEmoji(i);
+    display.appendChild(chip);
+  });
+  const trigger = document.getElementById('pickerTrigger');
+  trigger.disabled = selectedEmojis.length >= 5;
+  display.classList.toggle('active', selectedEmojis.length > 0);
+}
+
+function updateGenerateBtn() {
+  document.getElementById('generateBtn').disabled = selectedEmojis.length < 3 || isGenerating;
+}
+
+// Close picker on outside click
+document.addEventListener('click', (e) => {
+  const picker = document.getElementById('emojiPicker');
+  const trigger = document.getElementById('pickerTrigger');
+  if (!picker.contains(e.target) && e.target !== trigger) {
+    picker.classList.remove('open');
+  }
+});
+
+// ============ MODE SELECTION ============
+function selectMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+}
+
+// ============ API KEY ============
+function openModal() {
+  const modal = document.getElementById('apiModal');
+  document.getElementById('apiKeyInput').value = localStorage.getItem('gemini_api_key') || '';
+  modal.classList.add('active');
+}
+
+function closeModal() { document.getElementById('apiModal').classList.remove('active'); }
+
+function saveApiKey() {
+  const key = document.getElementById('apiKeyInput').value.trim();
+  if (key) { localStorage.setItem('gemini_api_key', key); }
+  else { localStorage.removeItem('gemini_api_key'); }
+  closeModal();
+}
+
+function getApiKey() { return localStorage.getItem('gemini_api_key'); }
+
+// Prompt for key on load if not set
+window.addEventListener('DOMContentLoaded', () => {
+  buildEmojiPicker();
+  if (!getApiKey()) setTimeout(openModal, 500);
+});
+
+// ============ GENERATION ============
+async function generate() {
+  const key = getApiKey();
+  if (!key) { openModal(); return; }
+  if (selectedEmojis.length < 3) return;
+
+  isGenerating = true;
+  updateGenerateBtn();
+  document.getElementById('resultContainer').className = 'result-container';
+  document.getElementById('loading').classList.add('active');
+
+  const loadingTexts = {
+    album: ['Searching music libraries...', 'Matching vibes to albums...', 'Curating your perfect match...'],
+    story: ['Dreaming up characters...', 'Weaving a tale of wonder...', 'Adding a sprinkle of magic...'],
+    constellation: ['Mapping the night sky...', 'Connecting the stars...', 'Charting your constellation...']
+  };
+  let textIdx = 0;
+  const textEl = document.getElementById('loadingText');
+  const textInterval = setInterval(() => {
+    textIdx = (textIdx + 1) % loadingTexts[currentMode].length;
+    textEl.textContent = loadingTexts[currentMode][textIdx];
+  }, 1500);
+
+  try {
+    const prompt = buildPrompt();
+    const response = await callGemini(key, prompt);
+    const parsed = parseResponse(response);
+    renderResult(parsed);
+  } catch (err) {
+    console.error(err);
+    document.getElementById('resultContainer').innerHTML = `
+      <div class="story-card" style="text-align:center;">
+        <p style="color:#EF4444;font-weight:600;">Oops! Something went wrong.</p>
+        <p style="color:var(--text-secondary);margin-top:8px;">${err.message || 'Failed to generate. Please check your API key and try again.'}</p>
+      </div>`;
+    document.getElementById('resultContainer').className = 'result-container active';
+  } finally {
+    clearInterval(textInterval);
+    document.getElementById('loading').classList.remove('active');
+    isGenerating = false;
+    updateGenerateBtn();
+  }
+}
+
+function buildPrompt() {
+  const emojis = selectedEmojis.join(' ');
+
+  if (currentMode === 'album') {
+    return `You are given these emojis: ${emojis}
+
+Based on the mood, themes, and feelings these emojis evoke, suggest ONE real, existing music album that matches.
+
+IMPORTANT: The album MUST be a real album that actually exists. Do not invent albums.
+
+Respond in this EXACT JSON format (no markdown, no code blocks, just raw JSON):
+{
+  "albumTitle": "Album Name",
+  "artist": "Artist Name",
+  "year": 2020,
+  "genre": "Genre name",
+  "tracks": [
+    {"number": 1, "title": "Track Name", "emoji": "emoji that matches this track"},
+    {"number": 2, "title": "Track Name", "emoji": "emoji that matches this track"},
+    {"number": 3, "title": "Track Name", "emoji": "emoji that matches this track"},
+    {"number": 4, "title": "Track Name", "emoji": "emoji that matches this track"},
+    {"number": 5, "title": "Track Name", "emoji": "emoji that matches this track"}
+  ],
+  "review": "A short 2-sentence review of the album in relation to the emojis",
+  "reviewer": "A famous music publication name"
+}
+
+Pick up to 5 notable tracks from the album. Use emojis from the user's selection or related ones for each track.`;
+  }
+
+  if (currentMode === 'story') {
+    return `You are given these emojis: ${emojis}
+
+Write a short, whimsical bedtime story (about 150-200 words) inspired by these emojis. The story should be warm, cozy, and suitable for all ages. Include the emojis naturally within the narrative.
+
+Also provide a creative title for the story.
+
+Respond in this EXACT JSON format (no markdown, no code blocks, just raw JSON):
+{
+  "title": "Story Title",
+  "story": "The full story text with emojis woven in. Use \\n\\n for paragraph breaks.",
+  "readTime": "2 min read"
+}`;
+  }
+
+  if (currentMode === 'constellation') {
+    return `You are given these emojis: ${emojis}
+
+Pick a real constellation that matches the mood or theme of these emojis. Then describe how each emoji maps to a star in that constellation.
+
+Respond in this EXACT JSON format (no markdown, no code blocks, just raw JSON):
+{
+  "name": "Constellation Common Name",
+  "latin": "Latin name",
+  "description": "A 2-3 sentence description connecting the constellation's mythology to the emojis' themes.",
+  "stars": [
+    {"emoji": "${selectedEmojis[0]}", "label": "Star name or role", "x": 30, "y": 20},
+    {"emoji": "${selectedEmojis[1]}", "label": "Star name or role", "x": 70, "y": 35}
+    ${selectedEmojis.length >= 3 ? `,"emoji": "${selectedEmojis[2]}", "label": "Star name or role", "x": 50, "y": 60}` : ''}
+    ${selectedEmojis.length >= 4 ? `,{"emoji": "${selectedEmojis[3]}", "label": "Star name or role", "x": 25, "y": 75}` : ''}
+    ${selectedEmojis.length >= 5 ? `,{"emoji": "${selectedEmojis[4]}", "label": "Star name or role", "x": 80, "y": 80}` : ''}
+  ],
+  "connections": [[0,1],[1,2]${selectedEmojis.length >= 4 ? ',[2,3]' : ''}${selectedEmojis.length >= 5 ? ',[3,4]' : ''}]
+}
+
+IMPORTANT: x and y values should be percentages (0-100) representing positions in a square canvas. Spread them out nicely. Make sure the stars array has exactly ${selectedEmojis.length} entries, one per emoji in the order given. connections is an array of [starIndex, starIndex] pairs showing which stars to connect with lines.`;
+  }
+}
+
+async function callGemini(apiKey, prompt) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { temperature: 0.9, maxOutputTokens: 1024 }
+    })
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err?.error?.message || `API error: ${res.status}`);
+  }
+  const data = await res.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+}
+
+function parseResponse(text) {
+  // Extract JSON from response (handle markdown code blocks)
+  let json = text.trim();
+  const match = json.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if (match) json = match[1].trim();
+  // Also try to find raw JSON
+  const braceStart = json.indexOf('{');
+  const braceEnd = json.lastIndexOf('}');
+  if (braceStart !== -1 && braceEnd !== -1) {
+    json = json.substring(braceStart, braceEnd + 1);
+  }
+  return JSON.parse(json);
+}
+
+// ============ RENDER RESULTS ============
+function renderResult(data) {
+  const container = document.getElementById('resultContainer');
+
+  if (currentMode === 'album') renderAlbum(container, data);
+  else if (currentMode === 'story') renderStory(container, data);
+  else if (currentMode === 'constellation') renderConstellation(container, data);
+
+  container.className = 'result-container active';
+}
+
+function renderAlbum(container, data) {
+  const tracksHTML = (data.tracks || []).map(t => `
+    <li>
+      <span class="track-num">${t.number}.</span>
+      <span class="track-emoji">${t.emoji}</span>
+      <span>${t.title}</span>
+    </li>
+  `).join('');
+
+  container.innerHTML = `
+    <div class="album-card">
+      <div class="album-header">
+        <div class="album-emojis">${selectedEmojis.join(' ')}</div>
+        <div class="album-badge">&#127925; Album</div>
+      </div>
+      <div class="album-body">
+        <div class="album-title">${selectedEmojis.join(' ')} — ${data.albumTitle}</div>
+        <div class="album-artist">${data.artist}</div>
+        <div class="album-year">${data.year}</div>
+        <div class="album-genre">Genre: ${data.genre}</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;margin-bottom:8px;">Tracklist:</div>
+        <ul class="album-tracklist">${tracksHTML}</ul>
+        <div class="album-review">
+          <p>"${data.review}"</p>
+          <div class="reviewer">— ${data.reviewer} ${'⭐'.repeat(Math.floor(Math.random()*2)+4)}</div>
+        </div>
+      </div>
+    </div>
+    <button class="regen-btn" onclick="generate()">&#x21bb; Regenerate</button>
+  `;
+}
+
+function renderStory(container, data) {
+  const paragraphs = data.story.split(/\n\n|\n/).filter(Boolean);
+  const storyHTML = paragraphs.map(p => `<p>${p}</p>`).join('<div class="story-divider">· · ·</div>');
+
+  container.innerHTML = `
+    <div class="story-card">
+      <div class="story-header">
+        <div class="story-moon">&#127769;</div>
+        <div class="story-meta">
+          <h3>${data.title}</h3>
+          <span>${data.readTime || '2 min read'}</span>
+        </div>
+      </div>
+      <div class="story-emojis">${selectedEmojis.join(' ')}</div>
+      <div class="story-text">${storyHTML}</div>
+    </div>
+    <button class="regen-btn" onclick="generate()">&#x21bb; Regenerate</button>
+  `;
+}
+
+function renderConstellation(container, data) {
+  const stars = data.stars || [];
+  const connections = data.connections || [];
+
+  // Generate random background stars
+  let bgStarsHTML = '';
+  for (let i = 0; i < 50; i++) {
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    const size = Math.random() * 2 + 1;
+    const opacity = Math.random() * 0.5 + 0.1;
+    bgStarsHTML += `<div class="bg-star" style="left:${x}%;top:${y}%;width:${size}px;height:${size}px;opacity:${opacity}"></div>`;
+  }
+
+  // Stars
+  const starsHTML = stars.map((s, i) => `
+    <div class="constellation-star" style="left:${s.x}%;top:${s.y}%;transform:translate(-50%,-50%)">${s.emoji}</div>
+  `).join('');
+
+  // SVG lines
+  const linesHTML = connections.map(([a, b]) => {
+    if (!stars[a] || !stars[b]) return '';
+    return `<line x1="${stars[a].x}%" y1="${stars[a].y}%" x2="${stars[b].x}%" y2="${stars[b].y}%"/>`;
+  }).join('');
+
+  // Legend
+  const legendHTML = stars.map(s => `
+    <div class="legend-item">
+      <div class="legend-dot"></div>
+      <span>${s.emoji} ${s.label}</span>
+    </div>
+  `).join('');
+
+  container.innerHTML = `
+    <div class="constellation-card">
+      <div class="constellation-sky">
+        <div class="bg-stars">${bgStarsHTML}</div>
+        <div class="constellation-canvas">
+          <svg class="constellation-lines" viewBox="0 0 100 100" preserveAspectRatio="none">${linesHTML}</svg>
+          ${starsHTML}
+        </div>
+      </div>
+      <div class="constellation-info">
+        <div class="constellation-name">${data.name}</div>
+        <div class="constellation-latin">${data.latin}</div>
+        <div class="constellation-desc">${data.description}</div>
+        <div class="constellation-legend">${legendHTML}</div>
+      </div>
+    </div>
+    <button class="regen-btn" onclick="generate()">&#x21bb; Regenerate</button>
+  `;
+}
+</script>
+</body>
+</html>
