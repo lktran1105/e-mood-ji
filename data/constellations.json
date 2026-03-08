@@ -1,0 +1,114 @@
+[
+  {
+    "name": "Orion", "latin": "Orion",
+    "tags": ["strong","brave","adventure","hunter","winter","bold","night","stars","warrior","power","hero","fierce"],
+    "description": "Orion the Hunter strides across the winter sky, his belt of three bright stars unmistakable. In Greek mythology, he was the greatest hunter who ever lived, placed among the stars for eternity.",
+    "starNames": ["Betelgeuse","Rigel","Bellatrix","Mintaka","Alnilam"],
+    "positions": [{"x":25,"y":15},{"x":75,"y":85},{"x":20,"y":30},{"x":40,"y":50},{"x":55,"y":50}],
+    "connections": [[0,2],[2,3],[3,4],[4,1],[0,3]]
+  },
+  {
+    "name": "Lyra", "latin": "Lyra",
+    "tags": ["music","melody","harmony","creative","art","beautiful","singing","elegant","peaceful","divine","poetic","notes"],
+    "description": "Lyra represents the lyre of Orpheus, whose music was so beautiful it could charm animals, trees, and even stones. When he died, Zeus placed his lyre in the sky as a constellation.",
+    "starNames": ["Vega","Sheliak","Sulafat","Delta Lyrae","Epsilon Lyrae"],
+    "positions": [{"x":50,"y":10},{"x":35,"y":45},{"x":65,"y":45},{"x":25,"y":80},{"x":75,"y":80}],
+    "connections": [[0,1],[0,2],[1,3],[2,4],[1,2]]
+  },
+  {
+    "name": "Ursa Major", "latin": "Ursa Major",
+    "tags": ["bear","strong","nature","forest","guide","north","night","family","protective","wild","large","guardian"],
+    "description": "The Great Bear lumbers across the northern sky, containing the famous Big Dipper. In many cultures, these stars served as a celestial compass, always pointing travelers toward true north.",
+    "starNames": ["Dubhe","Merak","Phecda","Megrez","Alioth"],
+    "positions": [{"x":20,"y":20},{"x":35,"y":40},{"x":55,"y":50},{"x":65,"y":35},{"x":80,"y":25}],
+    "connections": [[0,1],[1,2],[2,3],[3,4],[2,4]]
+  },
+  {
+    "name": "Pisces", "latin": "Pisces",
+    "tags": ["ocean","water","fish","dreamy","emotional","flowing","deep","gentle","mystical","swim","intuitive","romantic"],
+    "description": "Pisces represents two fish tied together by a cord, swimming in opposite directions. In mythology, Aphrodite and Eros transformed into fish to escape the monster Typhon, forever bound in the stars.",
+    "starNames": ["Alpherg","Fumalsamakah","Delta Piscium","Omega Piscium","Tau Piscium"],
+    "positions": [{"x":20,"y":30},{"x":40,"y":15},{"x":60,"y":40},{"x":80,"y":25},{"x":50,"y":70}],
+    "connections": [[0,1],[1,3],[2,4],[0,2],[1,2]]
+  },
+  {
+    "name": "Leo", "latin": "Leo",
+    "tags": ["lion","brave","king","proud","fierce","warm","sunshine","confident","fire","leader","royal","bold","strong"],
+    "description": "Leo the Lion rules the spring sky with regal bearing. This constellation represents the Nemean Lion, whose golden fur was impervious to weapons, finally defeated by Heracles as his first labor.",
+    "starNames": ["Regulus","Denebola","Algieba","Zosma","Chertan"],
+    "positions": [{"x":20,"y":70},{"x":80,"y":30},{"x":30,"y":40},{"x":65,"y":25},{"x":50,"y":50}],
+    "connections": [[0,2],[2,4],[4,3],[3,1],[2,3]]
+  },
+  {
+    "name": "Cygnus", "latin": "Cygnus",
+    "tags": ["swan","beautiful","grace","flying","sky","free","elegant","transformation","white","pure","lake","bird","majestic"],
+    "description": "Cygnus the Swan soars along the Milky Way with wings outstretched. Zeus disguised himself as a swan to visit Leda, and the constellation forever glides through the river of stars.",
+    "starNames": ["Deneb","Albireo","Sadr","Gienah","Delta Cygni"],
+    "positions": [{"x":50,"y":10},{"x":50,"y":90},{"x":50,"y":45},{"x":20,"y":55},{"x":80,"y":55}],
+    "connections": [[0,2],[2,1],[3,2],[2,4],[3,4]]
+  },
+  {
+    "name": "Cassiopeia", "latin": "Cassiopeia",
+    "tags": ["queen","vain","beautiful","throne","elegant","proud","star","royal","dramatic","feminine","night"],
+    "description": "Queen Cassiopeia sits on her celestial throne in the shape of a W, circling the North Pole. She was placed in the sky as punishment for her vanity, sometimes hanging upside down.",
+    "starNames": ["Schedar","Caph","Gamma Cas","Ruchbah","Segin"],
+    "positions": [{"x":15,"y":50},{"x":30,"y":20},{"x":50,"y":55},{"x":70,"y":20},{"x":85,"y":50}],
+    "connections": [[0,1],[1,2],[2,3],[3,4]]
+  },
+  {
+    "name": "Scorpius", "latin": "Scorpius",
+    "tags": ["scorpion","danger","fierce","mysterious","dark","passionate","intense","desert","hot","autumn","sting","powerful"],
+    "description": "Scorpius curves its deadly tail across the summer sky. The scorpion was sent by the earth goddess Gaia to slay Orion, and to this day the two constellations never appear in the sky together.",
+    "starNames": ["Antares","Shaula","Dschubba","Sargas","Lesath"],
+    "positions": [{"x":40,"y":30},{"x":80,"y":80},{"x":25,"y":15},{"x":70,"y":65},{"x":85,"y":85}],
+    "connections": [[2,0],[0,3],[3,1],[1,4],[0,1]]
+  },
+  {
+    "name": "Gemini", "latin": "Gemini",
+    "tags": ["twins","duo","friendship","playful","curious","social","communication","clever","two","together","bond","siblings"],
+    "description": "Gemini represents the inseparable twins Castor and Pollux. When mortal Castor died, Pollux begged Zeus to let them share immortality, and so they were placed together in the stars forever.",
+    "starNames": ["Castor","Pollux","Alhena","Wasat","Mebsuta"],
+    "positions": [{"x":35,"y":10},{"x":65,"y":10},{"x":45,"y":50},{"x":55,"y":45},{"x":40,"y":80}],
+    "connections": [[0,2],[1,3],[2,3],[2,4],[3,4]]
+  },
+  {
+    "name": "Aquarius", "latin": "Aquarius",
+    "tags": ["water","flowing","rain","pouring","humanitarian","unique","rebel","air","intellectual","future","free","progressive"],
+    "description": "Aquarius the Water Bearer pours an endless stream of water across the sky. Associated with Ganymede, the most beautiful mortal, who was carried to Olympus to serve as cupbearer to the gods.",
+    "starNames": ["Sadalsuud","Sadalmelik","Skat","Albali","Ancha"],
+    "positions": [{"x":35,"y":20},{"x":60,"y":15},{"x":70,"y":60},{"x":25,"y":45},{"x":50,"y":80}],
+    "connections": [[0,1],[0,3],[1,2],[3,4],[2,4]]
+  },
+  {
+    "name": "Corona Borealis", "latin": "Corona Borealis",
+    "tags": ["crown","royal","celebration","love","wedding","beautiful","circle","jewel","precious","elegant","gift","romantic"],
+    "description": "The Northern Crown is a delicate semicircle of stars representing the crown given to Ariadne by Dionysus on their wedding day. It was cast into the sky as a symbol of eternal love.",
+    "starNames": ["Alphecca","Nusakan","Gamma CrB","Delta CrB","Epsilon CrB"],
+    "positions": [{"x":50,"y":25},{"x":30,"y":35},{"x":70,"y":35},{"x":20,"y":55},{"x":80,"y":55}],
+    "connections": [[3,1],[1,0],[0,2],[2,4]]
+  },
+  {
+    "name": "Canis Major", "latin": "Canis Major",
+    "tags": ["dog","loyal","faithful","companion","bright","star","sirius","winter","guardian","fast","hunting","devoted"],
+    "description": "Canis Major, the Great Dog, faithfully follows Orion across the sky and contains Sirius, the brightest star visible from Earth. A symbol of loyalty and companionship through the darkest nights.",
+    "starNames": ["Sirius","Mirzam","Wezen","Adhara","Aludra"],
+    "positions": [{"x":45,"y":15},{"x":25,"y":30},{"x":55,"y":55},{"x":35,"y":70},{"x":70,"y":75}],
+    "connections": [[0,1],[0,2],[2,3],[2,4],[1,3]]
+  },
+  {
+    "name": "Phoenix", "latin": "Phoenix",
+    "tags": ["rebirth","fire","transformation","rising","phoenix","renewal","hope","flame","powerful","resilience","new","death"],
+    "description": "The Phoenix constellation represents the mythical firebird that is cyclically reborn from its own ashes. A symbol of renewal and the eternal cycle of destruction and creation.",
+    "starNames": ["Ankaa","Beta Phoenicis","Gamma Phoenicis","Delta Phoenicis","Epsilon Phoenicis"],
+    "positions": [{"x":50,"y":20},{"x":30,"y":40},{"x":70,"y":40},{"x":20,"y":70},{"x":80,"y":70}],
+    "connections": [[0,1],[0,2],[1,3],[2,4],[1,2]]
+  },
+  {
+    "name": "Draco", "latin": "Draco",
+    "tags": ["dragon","mythical","guardian","ancient","mysterious","winding","dark","powerful","treasure","fantasy","serpent","wise"],
+    "description": "Draco the Dragon winds between the two Bears in the northern sky. This is Ladon, the hundred-headed dragon who guarded the golden apples of the Hesperides, slain by Heracles.",
+    "starNames": ["Thuban","Eltanin","Rastaban","Aldhibah","Grumium"],
+    "positions": [{"x":20,"y":20},{"x":50,"y":10},{"x":70,"y":30},{"x":60,"y":60},{"x":30,"y":75}],
+    "connections": [[0,1],[1,2],[2,3],[3,4],[4,0]]
+  }
+]

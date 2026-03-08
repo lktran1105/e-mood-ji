@@ -18,9 +18,6 @@
     --text-primary: #1C1917;
     --text-secondary: #78716C;
     --text-muted: #A8A29E;
-    --gradient-start: #F97316;
-    --gradient-mid: #F472B6;
-    --gradient-end: #FB923C;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,68 +33,20 @@
   h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; }
 
   /* Floating background orbs */
-  .bg-orbs {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
-  }
+  .bg-orbs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
   .bg-orbs .orb {
     position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15;
     animation: floatOrb 20s ease-in-out infinite;
   }
-  .bg-orbs .orb:nth-child(1) { width: 400px; height: 400px; background: var(--coral); top: -100px; right: -100px; animation-delay: 0s; }
+  .bg-orbs .orb:nth-child(1) { width: 400px; height: 400px; background: var(--coral); top: -100px; right: -100px; }
   .bg-orbs .orb:nth-child(2) { width: 300px; height: 300px; background: var(--pink); bottom: -50px; left: -50px; animation-delay: -7s; }
   .bg-orbs .orb:nth-child(3) { width: 250px; height: 250px; background: var(--amber); top: 50%; left: 50%; animation-delay: -14s; }
-
   @keyframes floatOrb {
     0%, 100% { transform: translate(0, 0) scale(1); }
     33% { transform: translate(30px, -30px) scale(1.05); }
     66% { transform: translate(-20px, 20px) scale(0.95); }
   }
 
-  /* Settings button */
-  .settings-btn {
-    position: fixed; top: 20px; right: 20px; z-index: 100;
-    width: 42px; height: 42px; border-radius: 50%;
-    background: rgba(255,255,255,0.8); border: 1px solid var(--card-border);
-    backdrop-filter: blur(10px); cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.3s; font-size: 18px;
-  }
-  .settings-btn:hover { transform: rotate(60deg); background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-
-  /* API Key Modal */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px);
-    z-index: 200; display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s;
-  }
-  .modal-overlay.active { opacity: 1; pointer-events: auto; }
-  .modal {
-    background: white; border-radius: 24px; padding: 36px; max-width: 440px; width: 90%;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.15); transform: translateY(20px); transition: transform 0.3s;
-  }
-  .modal-overlay.active .modal { transform: translateY(0); }
-  .modal h3 { font-size: 1.3rem; margin-bottom: 8px; }
-  .modal p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5; }
-  .modal input {
-    width: 100%; padding: 14px 16px; border-radius: 14px;
-    border: 2px solid var(--card-border); font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem; outline: none; transition: border-color 0.3s;
-  }
-  .modal input:focus { border-color: var(--coral); }
-  .modal-actions { display: flex; gap: 10px; margin-top: 16px; }
-  .modal-actions button {
-    flex: 1; padding: 12px; border-radius: 14px; font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; border: none;
-  }
-  .btn-save {
-    background: linear-gradient(135deg, var(--coral), var(--pink));
-    color: white;
-  }
-  .btn-save:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(249,115,22,0.4); }
-  .btn-cancel { background: #F5F5F4; color: var(--text-secondary); }
-  .btn-cancel:hover { background: #E7E5E4; }
-
-  /* Main container */
   .container {
     position: relative; z-index: 1;
     max-width: 800px; margin: 0 auto; padding: 60px 24px 80px;
@@ -113,7 +62,7 @@
   }
   .header .tagline { color: var(--text-secondary); font-size: 1.1rem; }
 
-  /* Emoji input area */
+  /* Input section */
   .input-section {
     background: white; border-radius: 28px; padding: 32px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid var(--card-border);
@@ -125,9 +74,7 @@
   }
   .input-section .hint { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 16px; }
 
-  .emoji-input-wrap {
-    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
-  }
+  .emoji-input-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
   .emoji-display {
     flex: 1; display: flex; gap: 8px; min-height: 64px; padding: 12px 16px;
     background: var(--card-bg); border-radius: 18px; border: 2px dashed var(--card-border);
@@ -144,12 +91,10 @@
   }
   .emoji-chip:hover { transform: scale(1.1); }
   .emoji-chip:hover::after {
-    content: '×'; position: absolute; top: -4px; right: -4px;
+    content: '\00d7'; position: absolute; top: -4px; right: -4px;
     background: #EF4444; color: white; font-size: 0.65rem; width: 16px; height: 16px;
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-family: sans-serif;
   }
-
   @keyframes popIn {
     0% { transform: scale(0); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
@@ -163,7 +108,6 @@
   .emoji-picker-trigger:hover { border-color: var(--coral); transform: scale(1.05); }
   .emoji-picker-trigger:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
-  /* Emoji picker dropdown */
   .emoji-picker-container { position: relative; }
   .emoji-picker {
     position: absolute; top: 64px; right: 0; z-index: 50;
@@ -178,9 +122,7 @@
     font-size: 0.9rem; margin-bottom: 12px; outline: none; font-family: 'DM Sans', sans-serif;
   }
   .emoji-picker-search:focus { border-color: var(--coral); }
-  .emoji-picker-grid {
-    display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
-  }
+  .emoji-picker-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
   .emoji-picker-grid button {
     font-size: 1.4rem; padding: 6px; border: none; background: none;
     border-radius: 8px; cursor: pointer; transition: background 0.2s;
@@ -206,7 +148,6 @@
     border-color: var(--coral); background: linear-gradient(135deg, #FFF7ED, #FFF1F2);
     color: var(--coral-deep);
   }
-  .mode-btn .mode-icon { font-size: 1.2rem; }
 
   /* Generate button */
   .generate-section { text-align: center; margin-bottom: 32px; }
@@ -218,18 +159,17 @@
     transition: all 0.3s; position: relative; overflow: hidden;
   }
   .generate-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(249,115,22,0.4); }
-  .generate-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .generate-btn:disabled { opacity: 0.5; cursor: not-allowed; }
   .generate-btn .shimmer {
-    position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
     transform: translateX(-100%);
   }
   .generate-btn:not(:disabled):hover .shimmer { animation: shimmer 1.5s infinite; }
   @keyframes shimmer { 100% { transform: translateX(100%); } }
 
-  /* Loading state */
-  .loading-container {
-    text-align: center; padding: 48px; display: none;
-  }
+  /* Loading */
+  .loading-container { text-align: center; padding: 48px; display: none; }
   .loading-container.active { display: block; }
   .loading-dots { display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; }
   .loading-dots span {
@@ -242,9 +182,8 @@
     0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
     40% { transform: scale(1); opacity: 1; }
   }
-  .loading-container p { color: var(--text-secondary); font-size: 0.95rem; }
 
-  /* Result cards */
+  /* Result container */
   .result-container { display: none; }
   .result-container.active { display: block; animation: fadeUp 0.5s ease; }
   @keyframes fadeUp {
@@ -253,10 +192,7 @@
   }
 
   /* Album card */
-  .album-card {
-    border-radius: 28px; overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--card-border);
-  }
+  .album-card { border-radius: 28px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--card-border); }
   .album-header {
     background: linear-gradient(135deg, var(--coral), var(--pink), var(--amber));
     padding: 36px 32px; text-align: center;
@@ -280,8 +216,7 @@
   .track-num { color: var(--text-muted); font-size: 0.85rem; min-width: 20px; }
   .track-emoji { font-size: 1.2rem; }
   .album-review {
-    background: white; border-radius: 16px; padding: 20px;
-    border: 1px solid var(--card-border);
+    background: white; border-radius: 16px; padding: 20px; border: 1px solid var(--card-border);
   }
   .album-review p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; font-style: italic; }
   .album-review .reviewer { margin-top: 10px; font-style: normal; font-weight: 600; color: var(--text-primary); }
@@ -300,16 +235,12 @@
   .story-meta h3 { font-size: 1.3rem; }
   .story-meta span { color: var(--text-muted); font-size: 0.85rem; }
   .story-emojis { font-size: 2rem; letter-spacing: 6px; text-align: center; margin-bottom: 20px; }
-  .story-text { color: var(--text-secondary); line-height: 1.8; font-size: 1rem; white-space: pre-wrap; }
-  .story-divider {
-    text-align: center; color: var(--text-muted); margin: 16px 0; letter-spacing: 4px;
-  }
+  .story-text { color: var(--text-secondary); line-height: 1.8; font-size: 1rem; }
+  .story-text p { margin-bottom: 12px; }
+  .story-divider { text-align: center; color: var(--text-muted); margin: 16px 0; letter-spacing: 4px; }
 
   /* Constellation card */
-  .constellation-card {
-    border-radius: 28px; overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--card-border);
-  }
+  .constellation-card { border-radius: 28px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--card-border); }
   .constellation-sky {
     background: linear-gradient(180deg, #0F172A, #1E293B, #334155);
     padding: 40px; position: relative; min-height: 350px;
@@ -319,27 +250,17 @@
   .constellation-star {
     position: absolute; font-size: 2rem;
     animation: twinkle 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 8px rgba(251,191,36,0.6));
-    z-index: 2;
+    filter: drop-shadow(0 0 8px rgba(251,191,36,0.6)); z-index: 2;
   }
-  .constellation-star:nth-child(2) { animation-delay: 0.5s; }
-  .constellation-star:nth-child(3) { animation-delay: 1s; }
-  .constellation-star:nth-child(4) { animation-delay: 1.5s; }
-  .constellation-star:nth-child(5) { animation-delay: 2s; }
+  .constellation-star:nth-child(odd) { animation-delay: 0.7s; }
+  .constellation-star:nth-child(even) { animation-delay: 1.4s; }
   @keyframes twinkle {
     0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.15); opacity: 0.8; }
   }
-  .constellation-lines {
-    position: absolute; inset: 0; z-index: 1;
-  }
-  .constellation-lines line {
-    stroke: rgba(251,191,36,0.35); stroke-width: 1.5;
-    stroke-dasharray: 4 4;
-  }
-  .bg-stars {
-    position: absolute; inset: 0; overflow: hidden;
-  }
+  .constellation-lines { position: absolute; inset: 0; z-index: 1; }
+  .constellation-lines line { stroke: rgba(251,191,36,0.35); stroke-width: 1.5; stroke-dasharray: 4 4; }
+  .bg-stars { position: absolute; inset: 0; overflow: hidden; }
   .bg-star {
     position: absolute; width: 2px; height: 2px; background: white;
     border-radius: 50%; opacity: 0.4;
@@ -348,19 +269,14 @@
   .constellation-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
   .constellation-latin { color: var(--coral); font-size: 0.9rem; font-style: italic; margin-bottom: 12px; }
   .constellation-desc { color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; }
-  .constellation-legend {
-    display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap;
-  }
+  .constellation-legend { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
   .legend-item {
     display: flex; align-items: center; gap: 6px; background: white;
-    padding: 6px 12px; border-radius: 10px; font-size: 0.8rem;
-    border: 1px solid var(--card-border);
+    padding: 6px 12px; border-radius: 10px; font-size: 0.8rem; border: 1px solid var(--card-border);
   }
-  .legend-dot {
-    width: 8px; height: 8px; border-radius: 50%; background: var(--amber);
-  }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); }
 
-  /* Regenerate button */
+  /* Regenerate */
   .regen-btn {
     display: block; margin: 24px auto 0; padding: 12px 28px;
     border-radius: 14px; border: 2px solid var(--card-border);
@@ -370,7 +286,6 @@
   }
   .regen-btn:hover { border-color: var(--coral); color: var(--coral); }
 
-  /* Responsive */
   @media (max-width: 600px) {
     .container { padding: 40px 16px 60px; }
     .header .logo { font-size: 2rem; }
@@ -384,37 +299,17 @@
 </head>
 <body>
 
-<div class="bg-orbs">
-  <div class="orb"></div><div class="orb"></div><div class="orb"></div>
-</div>
-
-<button class="settings-btn" onclick="openModal()" title="API Key Settings">&#9881;</button>
-
-<!-- API Key Modal -->
-<div class="modal-overlay" id="apiModal">
-  <div class="modal">
-    <h3>Gemini API Key</h3>
-    <p>Enter your Google Gemini API key. It's stored locally in your browser and never sent anywhere except to Google's API.</p>
-    <input type="password" id="apiKeyInput" placeholder="AIza..." autocomplete="off">
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn-save" onclick="saveApiKey()">Save Key</button>
-    </div>
-  </div>
-</div>
+<div class="bg-orbs"><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
 
 <div class="container">
-  <!-- Header -->
   <div class="header">
     <div class="logo">Emojify</div>
     <div class="tagline">Turn your emojis into something magical</div>
   </div>
 
-  <!-- Input section -->
   <div class="input-section">
     <label>Drop your emojis</label>
     <div class="hint">Pick 3 to 5 emojis and watch the magic happen</div>
-
     <div class="emoji-input-wrap">
       <div class="emoji-display" id="emojiDisplay">
         <span class="placeholder" id="emojiPlaceholder">Tap + to add emojis...</span>
@@ -427,59 +322,247 @@
         </div>
       </div>
     </div>
-
     <div class="mode-selector">
       <button class="mode-btn active" data-mode="album" onclick="selectMode('album')">
-        <span class="mode-icon">&#127925;</span> Album
+        <span>&#127925;</span> Album
       </button>
       <button class="mode-btn" data-mode="story" onclick="selectMode('story')">
-        <span class="mode-icon">&#127769;</span> Bedtime Story
+        <span>&#127769;</span> Bedtime Story
       </button>
       <button class="mode-btn" data-mode="constellation" onclick="selectMode('constellation')">
-        <span class="mode-icon">&#11088;</span> Constellation
+        <span>&#11088;</span> Constellation
       </button>
     </div>
   </div>
 
-  <!-- Generate -->
   <div class="generate-section">
     <button class="generate-btn" id="generateBtn" onclick="generate()" disabled>
-      <span class="shimmer"></span>
-      Generate Magic &#10024;
+      <span class="shimmer"></span>Generate Magic &#10024;
     </button>
   </div>
 
-  <!-- Loading -->
   <div class="loading-container" id="loading">
     <div class="loading-dots"><span></span><span></span><span></span></div>
     <p id="loadingText">Conjuring something special...</p>
   </div>
 
-  <!-- Results -->
   <div class="result-container" id="resultContainer"></div>
 </div>
 
 <script>
-// ============ STATE ============
+// =============================================
+// DATA — loaded from /data/*.json
+// To add albums: edit data/albums.json
+// To add constellations: edit data/constellations.json
+// To add emoji mappings: edit data/emojiMap.json
+// =============================================
+let emojiMap = {};
+let albumsDB = [];
+let constellationsDB = [];
+
+async function loadData() {
+  const [emojiRes, albumsRes, constRes] = await Promise.all([
+    fetch('data/emojiMap.json'),
+    fetch('data/albums.json'),
+    fetch('data/constellations.json')
+  ]);
+  emojiMap = await emojiRes.json();
+  albumsDB = await albumsRes.json();
+  constellationsDB = await constRes.json();
+}
+
+// (inline data removed — see /data/*.json)
+
+// =============================================
+// STORY TEMPLATES
+// =============================================
+function pickWord(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function pickFromTags(tags, mapping, fallback) {
+  const keys = Object.keys(mapping).sort(() => Math.random() - 0.5);
+  for (const k of keys) { if (tags.includes(k)) return mapping[k]; }
+  return fallback;
+}
+
+const storyTemplates = [
+  { tags:["nature","forest","animal","gentle","calm"],
+    title: (e) => `The ${pickWord(["Whispering","Enchanted","Secret","Hidden","Moonlit"])} ${pickWord(["Forest","Garden","Meadow","Grove"])}`,
+    build: (e, tags) => {
+      const place = pickFromTags(tags,{"forest":"deep forest","nature":"green meadow","ocean":"shimmering shore","mountain":"misty mountain","tropical":"tropical island"},"quiet little valley");
+      const char = pickFromTags(tags,{"cat":"little cat","dog":"faithful puppy","rabbit":"tiny rabbit","bear":"gentle bear cub","fox":"clever fox","bird":"small songbird","owl":"wise old owl"},"curious little creature");
+      const cn = char.split(" ").pop();
+      return `Once upon a time, in a ${place}, there lived a ${char} who loved nothing more than watching the evening sky. ${e[0]} ${e[1]}
+
+Every night, the ${cn} would climb to the highest spot it could find and gaze upward, wondering what stories the stars might tell. One special evening, something magical happened — a trail of shimmering light appeared, leading deeper into the ${place.split(" ").pop()}. ${e[2]}
+
+Following the glow with wonder in its heart, the ${cn} discovered a clearing where ${e.slice(0,3).join(" ")} danced together in the moonlight, creating patterns no one had ever seen before.
+
+${e.length > 3 ? `"Stay with us," whispered the light, and ${e[3]} appeared like a gentle promise. ` : ""}"Every night, magic happens here for those brave enough to look."
+
+And from that evening on, the ${cn} never felt alone again — for it knew that wonder was always just a short walk away. ${e.join(" ")}
+
+The End.`;
+    }},
+  { tags:["love","romantic","warm","sweet","heart"],
+    title: (e) => `${e[0]} and the ${pickWord(["Warmest","Softest","Sweetest","Gentlest"])} ${pickWord(["Night","Dream","Lullaby","Wish"])}`,
+    build: (e, tags) => {
+      return `In a town painted in sunset colors, there was a little house where love lived in every corner. ${e[0]} ${e[1]}
+
+The house had a magical window that showed you your happiest memory whenever you looked through it. One ${pickWord(["cozy","quiet","starlit","peaceful"])} evening, a visitor arrived — someone who had forgotten what happiness felt like.
+
+"Look through the window," said the keeper of the house, and as the visitor peered through the glass, ${e[2]} bloomed across the scene like flowers opening for the first time.
+
+${e.length > 3 ? `${e[3]} twinkled in the reflection, and the visitor felt a warmth spreading from their chest to their fingertips. ` : ""}The visitor's eyes grew wide. "I remember now," they whispered. "Happiness isn't something you find — it's something that's been with you all along."
+
+${e.length > 4 ? `Outside, ${e[4]} drifted through the sky like a gentle reminder. ` : ""}And that night, as the stars hummed a lullaby, both the keeper and the visitor fell asleep knowing that the warmest place in the world is wherever love decides to stay. ${e.join(" ")}
+
+Goodnight, little one. The End.`;
+    }},
+  { tags:["adventure","travel","exploring","space","brave"],
+    title: (e) => `The ${pickWord(["Great","Grand","Amazing","Incredible"])} ${pickWord(["Adventure","Journey","Voyage","Quest"])} of ${e[0]}`,
+    build: (e, tags) => {
+      const vehicle = pickFromTags(tags,{"space":"tiny rocket ship","ocean":"little wooden boat","sky":"hot air balloon","flying":"pair of magical wings"},"enchanted bicycle");
+      const dest = pickFromTags(tags,{"space":"the edge of the galaxy","ocean":"a hidden island","mountain":"the tallest peak","forest":"the heart of an ancient forest"},"a place no one had ever been");
+      return `${e[0]} had always dreamed of going to ${dest}. Everyone said it was impossible, but impossible had never stopped ${e[0]} before.
+
+One morning, ${e[0]} found a ${vehicle} waiting at the doorstep with a note that read: "For the brave. For the curious. For you." ${e[1]}
+
+The journey was long and full of surprises. ${e[2]} appeared along the way, sometimes as a challenge, sometimes as a friend. Each one taught ${e[0]} something new about courage and wonder.
+
+${e.length > 3 ? `At the halfway point, ${e[3]} joined the adventure, and together they were unstoppable. ` : ""}When ${e[0]} finally arrived at ${dest}, the view was more beautiful than any dream could hold.
+
+${e.length > 4 ? `${e[4]} shimmered on the horizon like a crown for the brave. ` : ""}"The real treasure," ${e[0]} realized, "was becoming the kind of person who never stops exploring."
+
+And with that thought warm in their heart, ${e[0]} smiled, closed their eyes, and drifted off to sleep under the stars. ${e.join(" ")}
+
+The End.`;
+    }},
+  { tags:["magic","fantasy","mystical","dream","sparkle"],
+    title: (e) => `The ${pickWord(["Magical","Enchanted","Wondrous","Mystical"])} ${pickWord(["Tale","Secret","Night","Dream"])} of ${e.slice(0,2).join(" ")}`,
+    build: (e, tags) => {
+      return `Deep in the land where dreams are made, there is a workshop run by ${e[0]}. Every night, while children sleep, ${e[0]} carefully crafts new dreams from starlight and whispered wishes.
+
+${e[1]} was ${e[0]}'s newest apprentice, still learning the art of dream-weaving. "The most important ingredient," ${e[0]} explained, "is a sprinkle of wonder."
+
+One night, ${e[2]} arrived with an unusual request — a dream so special it had never been made before. It needed to feel like a warm hug and sound like distant laughter.
+
+${e.length > 3 ? `${e[3]} volunteered the secret ingredient: a memory of the happiest day that ever was. ` : ""}Together, they mixed moonbeams with giggles, painted clouds with kindness, and folded starlight into the shape of a gentle embrace.
+
+${e.length > 4 ? `${e[4]} added the finishing touch — a tiny spark of magic that made the dream shimmer. ` : ""}When the dream was ready, they sent it floating out the window, and somewhere, a sleeping child smiled.
+
+"That," whispered ${e[0]}, "is why we do what we do." ${e.join(" ")}
+
+Sweet dreams. The End.`;
+    }},
+  { tags:["food","cooking","yummy","kitchen","delicious"],
+    title: (e) => `The ${pickWord(["Midnight","Moonlit","Starlit","Cozy"])} ${pickWord(["Kitchen","Bakery","Feast","Recipe"])}`,
+    build: (e, tags) => {
+      return `In a cozy kitchen where the oven always glowed warm, ${e[0]} was the head chef of the most magical bakery in the world. But this was no ordinary bakery — it only opened at bedtime.
+
+"Tonight's special order," announced ${e[1]}, reading from a sparkly menu, "is a batch of Dream Cookies!" ${e[2]}
+
+The recipe was simple but required the rarest ingredients: a cup of giggles, two tablespoons of starlight, a pinch of sleepy-dust, and the most important one of all — love, as much as you can find.
+
+${e.length > 3 ? `${e[3]} measured the starlight carefully, making sure every cookie would shine just right. ` : ""}The kitchen filled with the most wonderful aroma — like warm blankets and bedtime stories and that feeling when someone you love says goodnight.
+
+${e.length > 4 ? `${e[4]} peeked through the oven window, watching the cookies rise and glow golden. ` : ""}When the cookies were done, they floated out through the chimney and into the night sky, landing softly on the pillows of sleeping children everywhere.
+
+And if you listen very closely at bedtime, you might just hear the gentle sound of ${e[0]}'s kitchen, baking sweet dreams just for you. ${e.join(" ")}
+
+The End.`;
+    }},
+  { tags:["sad","lonely","hope","emotional","rain"],
+    title: (e) => `A ${pickWord(["Little","Small","Tiny","Gentle"])} ${pickWord(["Light","Glow","Spark","Star"])} in the ${pickWord(["Rain","Dark","Storm","Night"])}`,
+    build: (e, tags) => {
+      return `${e[0]} sat by the window, watching raindrops race each other down the glass. It had been a long day — the kind of day where everything feels a little too heavy and the sky forgets to smile.
+
+"Will it ever stop raining?" ${e[0]} asked quietly. ${e[1]}
+
+Just then, ${e[2]} appeared outside the window — a tiny glow, no bigger than a firefly, dancing between the raindrops. It moved closer, carrying a lantern the size of a thimble, filled with warm golden light.
+
+${e.length > 3 ? `"${e[3]} sent me," the little light said. "To remind you that even in the rain, there's warmth to be found." ` : ""}${e[0]} opened the window just a crack, and the tiny lantern floated inside. Instantly, the room felt different — softer, warmer, like a favorite blanket had been wrapped around the whole world.
+
+${e.length > 4 ? `${e[4]} appeared in the corner, proof that even the darkest rooms have hidden sparks of joy. ` : ""}"Thank you," whispered ${e[0]}. And for the first time all day, a smile appeared — small but real, like the first star after a storm.
+
+Tomorrow, the sun would return. But tonight, this little light was enough. ${e.join(" ")}
+
+Goodnight. The End.`;
+    }},
+  { tags:["party","celebration","fun","happy","birthday"],
+    title: (e) => `The ${pickWord(["Greatest","Most Wonderful","Most Magical","Coziest"])} ${pickWord(["Celebration","Party","Night","Festival"])} Ever`,
+    build: (e, tags) => {
+      return `The invitations arrived at sunset — tiny golden envelopes that smelled like cake and possibility. ${e[0]} opened theirs with trembling excitement. "You are invited to the Greatest Celebration the world has ever seen!"
+
+${e[1]} was already at the door, wearing a paper crown and the biggest smile imaginable. "Are you ready?" ${e[2]}
+
+The party was in a meadow where fairy lights hung from every blade of grass and the music seemed to come from the stars themselves. Everyone was there, dancing and laughing and sharing the most delicious treats.
+
+${e.length > 3 ? `${e[3]} had set up the most spectacular display — a fountain that sprayed warm golden light instead of water, making everyone it touched giggle uncontrollably. ` : ""}As the night grew late and the stars grew bright, everyone gathered in a circle. "The best parties," someone whispered, "are the ones where you feel like you truly belong."
+
+${e.length > 4 ? `${e[4]} started a gentle song, and soon everyone joined in, their voices rising like lanterns into the sky. ` : ""}One by one, the guests drifted off to sleep right there in the meadow, wrapped in warmth and the echo of laughter. ${e.join(" ")}
+
+The End.`;
+    }},
+  { tags:["ocean","water","beach","wave","swim"],
+    title: (e) => `The ${pickWord(["Secret","Hidden","Sleeping","Dreaming","Gentle"])} ${pickWord(["Ocean","Tide","Shore","Sea","Lagoon"])}`,
+    build: (e, tags) => {
+      return `Where the waves whisper bedtime stories to the shore, ${e[0]} lived in a little house made of sea glass and driftwood. Every night, the ocean sang a different lullaby. ${e[1]}
+
+One evening, the sea grew unusually still — like it was holding its breath. Then, from beneath the silver waves, ${e[2]} rose gently, carrying a message in a bottle.
+
+Inside the bottle was a tiny map, drawn in ink that glowed like moonlight on water. It showed a path across the seabed to a place marked simply: "Where dreams are born."
+
+${e.length > 3 ? `"Come with me," said ${e[3]}, and together they dove beneath the gentle waves, breathing easily in the warm, enchanted water. ` : ""}They followed the glowing path past coral castles and sleeping sea turtles, past gardens of swaying kelp that hummed soft melodies.
+
+${e.length > 4 ? `${e[4]} guided them through the deepest part, where bioluminescent creatures lit the way like underwater stars. ` : ""}At the end of the path was a cave where the ocean's heart beat slowly and peacefully — each beat sending a new dream rippling out across the world.
+
+"This is where your bedtime dreams come from," the ocean whispered. "Sleep now, and I'll send you the most beautiful one." ${e.join(" ")}
+
+Goodnight, little dreamer. The End.`;
+    }},
+];
+
+// =============================================
+// MATCHING ENGINE
+// =============================================
+function getTagsFromEmojis(emojis) {
+  const counts = {};
+  for (const emoji of emojis) {
+    const tags = emojiMap[emoji] || [];
+    for (const t of tags) counts[t] = (counts[t] || 0) + 1;
+  }
+  return counts;
+}
+
+function scoreItem(inputCounts, itemTags) {
+  let score = 0;
+  for (const tag of itemTags) {
+    if (inputCounts[tag]) score += inputCounts[tag] * 2;
+  }
+  return score + Math.random() * 1.5; // Small randomness for variety
+}
+
+// =============================================
+// STATE
+// =============================================
 let selectedEmojis = [];
 let currentMode = 'album';
-let isGenerating = false;
+let lastAlbumIdx = -1;
+let lastConstIdx = -1;
 
-// ============ EMOJI DATA ============
+// =============================================
+// EMOJI PICKER
+// =============================================
 const emojiCategories = {
-  "Smileys": ["😀","😃","😄","😁","😆","😅","🤣","😂","🙂","😉","😊","😇","🥰","😍","🤩","😘","😗","😚","😙","🥲","😋","😛","😜","🤪","😝","🤑","🤗","🤭","🤫","🤔","😐","😑","😶","😏","😒","🙄","😬","😮‍💨","🤥","😌","😔","😪","🤤","😴","😷","🤒","🤕","🤢","🤮","🥵","🥶","🥴","😵","🤯","🤠","🥳","🥸","😎","🤓","🧐","😕","😟","🙁","😮","😯","😲","😳","🥺","🥹","😦","😧","😨","😰","😥","😢","😭","😱","😖","😣","😞","😓","😩","😫","🥱","😤","😡","😠","🤬","😈","👿","💀","☠️","💩","🤡","👹","👺","👻","👽","👾","🤖"],
-  "Gestures": ["👋","🤚","🖐️","✋","🖖","👌","🤌","🤏","✌️","🤞","🤟","🤘","🤙","👈","👉","👆","🖕","👇","☝️","👍","👎","✊","👊","🤛","🤜","👏","🙌","👐","🤲","🤝","🙏","✍️","💅","🤳","💪","🦾"],
-  "Hearts": ["❤️","🧡","💛","💚","💙","💜","🖤","🤍","🤎","💔","❤️‍🔥","❤️‍🩹","❣️","💕","💞","💓","💗","💖","💘","💝","💟"],
-  "Animals": ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐻‍❄️","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈","🙉","🙊","🐒","🐔","🐧","🐦","🐤","🐣","🦆","🦅","🦉","🦇","🐺","🐗","🐴","🦄","🐝","🪱","🐛","🦋","🐌","🐞","🐜","🪰","🪲","🪳","🦟","🦗","🕷️","🦂","🐢","🐍","🦎","🦖","🦕","🐙","🦑","🦐","🦞","🦀","🐡","🐠","🐟","🐬","🐳","🐋","🦈","🦭","🐊","🐅","🐆","🦓","🦍","🦧","🐘","🦛","🦏","🐪","🐫","🦒","🦘","🦬","🐃","🐂","🐄","🐎","🐖","🐏","🐑","🦙","🐐","🦌","🐕","🐩","🦮","🐕‍🦺","🐈","🐈‍⬛","🪶","🐓","🦃","🦤","🦚","🦜","🦢","🦩","🕊️","🐇","🦝","🦨","🦡","🦫","🦦","🦥","🐁","🐀","🐿️","🦔"],
-  "Nature": ["🌵","🎄","🌲","🌳","🌴","🪵","🌱","🌿","☘️","🍀","🎍","🪴","🎋","🍃","🍂","🍁","🌾","🌺","🌻","🌹","🥀","🌷","🌼","🌸","💐","🍄","🌰","🐚","🪸","🪨","🌎","🌍","🌏","🌕","🌖","🌗","🌘","🌑","🌒","🌓","🌔","🌙","🌚","🌛","🌜","☀️","🌝","🌞","⭐","🌟","🌠","☁️","⛅","🌤️","🌥️","🌦️","🌧️","⛈️","🌩️","🌨️","❄️","☃️","⛄","🌬️","💨","🌪️","🌫️","🌈","🔥","💧","🌊","🎆","🎇","✨","🎑"],
-  "Food": ["🍏","🍎","🍐","🍊","🍋","🍌","🍉","🍇","🍓","🫐","🍈","🍒","🍑","🥭","🍍","🥥","🥝","🍅","🍆","🥑","🥦","🥬","🥒","🌶️","🫑","🌽","🥕","🫒","🧄","🧅","🥔","🍠","🥐","🥯","🍞","🥖","🥨","🧀","🥚","🍳","🧈","🥞","🧇","🥓","🥩","🍗","🍖","🦴","🌭","🍔","🍟","🍕","🫓","🥪","🥙","🧆","🌮","🌯","🫔","🥗","🥘","🫕","🍝","🍜","🍲","🍛","🍣","🍱","🥟","🦪","🍤","🍙","🍚","🍘","🍥","🥠","🥮","🍢","🍡","🍧","🍨","🍦","🥧","🧁","🍰","🎂","🍮","🍭","🍬","🍫","🍿","🍩","🍪","🌰","🥜","🍯","🥛","🍼","🫖","☕","🍵","🧃","🥤","🧋","🍶","🍺","🍻","🥂","🍷","🥃","🍸","🍹","🧉","🍾","🧊","🥄","🍴","🍽️","🥣","🥡","🥢"],
-  "Activities": ["⚽","🏀","🏈","⚾","🥎","🎾","🏐","🏉","🥏","🎱","🪀","🏓","🏸","🏒","🏑","🥍","🏏","🪃","🥅","⛳","🪁","🏹","🎣","🤿","🥊","🥋","🎽","🛹","🛼","🛷","⛸️","🥌","🎿","⛷️","🏂","🪂","🏋️","🤸","🤺","🤾","🏌️","🏇","🧘","🏄","🏊","🤽","🚣","🧗","🚵","🚴","🏆","🥇","🥈","🥉","🏅","🎖️","🏵️","🎗️","🎫","🎟️","🎪","🤹","🎭","🩰","🎨","🎬","🎤","🎧","🎼","🎹","🥁","🪘","🎷","🎺","🪗","🎸","🪕","🎻","🎲","♟️","🎯","🎳","🎮","🕹️","🧩"],
-  "Travel": ["🚗","🚕","🚙","🚌","🚎","🏎️","🚓","🚑","🚒","🚐","🛻","🚚","🚛","🚜","🛵","🏍️","🛺","🚲","🛴","🚨","🚔","🚍","🚘","🚖","✈️","🛫","🛬","🛩️","💺","🛰️","🚀","🛸","🚁","🛶","⛵","🚤","🛥️","🛳️","🚢","⚓","🗼","🏰","🏯","🗽","🎡","🎢","🎠","⛲","⛱️","🏖️","🏝️","🏜️","🌋","⛰️","🏔️","🗻","🏕️","🛖","🏠","🏡","🏗️","🏭","🏢","🏬","🏣","🏤","🏥","🏦","🏨","🏪","🏫","🏩","💒","🏛️","⛪","🕌","🕍","🛕","🕋"],
-  "Objects": ["⌚","📱","📲","💻","⌨️","🖥️","🖨️","🖱️","🖲️","💽","💾","💿","📀","🧮","🎥","🎞️","📽️","📺","📷","📸","📹","📼","🔍","🔎","🕯️","💡","🔦","🏮","🪔","📔","📕","📖","📗","📘","📙","📚","📓","📒","📃","📜","📄","📰","🗞️","📑","🔖","🏷️","💰","🪙","💴","💵","💶","💷","💸","💳","🧾","💹","✉️","📧","📨","📩","📤","📥","📦","📫","📪","📬","📭","📮","🗳️","✏️","✒️","🖋️","🖊️","🖌️","🖍️","📝","💼","📁","📂","🗂️","📅","📆","🗒️","🗓️","📇","📈","📉","📊","📋","📌","📍","📎","🖇️","📏","📐","✂️","🗃️","🗄️","🗑️","🔒","🔓","🔏","🔐","🔑","🗝️","🔨","🪓","⛏️","⚒️","🛠️","🗡️","⚔️","🔫","🪃","🛡️","🪚","🔧","🪛","🔩","⚙️","🗜️","⚖️","🦯","🔗","⛓️","🪝","🧰","🧲","🪜","🧪","🧫","🧬","🔬","🔭","📡","💉","🩸","💊","🩹","🩼","🩺","🩻","🚪","🛗","🪞","🪟","🛏️","🛋️","🪑","🚽","🪠","🚿","🛁","🪤","🪒","🧴","🧷","🧹","🧺","🧻","🪣","🧼","🫧","🪥","🧽","🧯","🛒","🚬","⚰️","🪦","⚱️","🗿","🪧","🪪"],
-  "Symbols": ["💯","🔴","🟠","🟡","🟢","🔵","🟣","⚫","⚪","🟤","🔺","🔻","🔸","🔹","🔶","🔷","💠","🔘","🏁","🚩","🎌","🏴","🏳️","🏳️‍🌈","🏴‍☠️","✝️","☪️","🕉️","☸️","✡️","🔯","🕎","☯️","☦️","🛐","⛎","♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓","🆔","⚛️","🉑","☢️","☣️","📴","📳","🈶","🈚","🈸","🈺","🈷️","✴️","🆚","💮","🉐","㊙️","㊗️","🈴","🈵","🈹","🈲","🅰️","🅱️","🆎","🆑","🅾️","🆘","❌","⭕","🛑","⛔","📛","🚫","💢","♨️","🚷","🚯","🚳","🚱","🔞","📵","🚭","❗","❕","❓","❔","‼️","⁉️","💤","♻️","✅","🈯","💹","❇️","✳️","❎","🌐","💠","Ⓜ️","🌀","💤","🏧","🚾","♿","🅿️","🛗","🈳","🈂️","🛂","🛃","🛄","🛅","🚹","🚺","🚼","⚧️","🚻","🚮","🎦","📶","🈁","🔣","ℹ️","🔤","🔡","🔠","🆖","🆗","🆙","🆒","🆕","🆓","0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","🔟","🔢","#️⃣","*️⃣","⏏️","▶️","⏸️","⏯️","⏹️","⏺️","⏭️","⏮️","⏩","⏪","⏫","⏬","◀️","🔼","🔽","➡️","⬅️","⬆️","⬇️","↗️","↘️","↙️","↖️","↕️","↔️","↪️","↩️","⤴️","⤵️","🔀","🔁","🔂","🔄","🔃","🎵","🎶","✖️","➕","➖","➗","♾️","💲","💱","™️","©️","®️","〰️","➰","➿","🔚","🔙","🔛","🔝","🔜","✔️","☑️","🔘","🔴","🟠","🟡","🟢","🔵","🟣","⚫","⚪","🟤","🔺","🔻","🔸","🔹","🔶","🔷","🔲","🔳","▪️","▫️","◾","◽","◼️","◻️","🟥","🟧","🟨","🟩","🟦","🟪","⬛","⬜","🟫","🔈","🔇","🔉","🔊","🔔","🔕","📣","📢","💬","💭","🗯️","♠️","♣️","♥️","♦️","🃏","🎴","🀄","🕐","🕑","🕒","🕓","🕔","🕕","🕖","🕗","🕘","🕙","🕚","🕛"]
+  "Smileys":["😀","😃","😄","😁","😆","😅","🤣","😂","🙂","😉","😊","😇","🥰","😍","🤩","😘","😗","😚","😙","🥲","😋","😛","😜","🤪","😝","🤑","🤗","🤭","🤫","🤔","😐","😑","😶","😏","😒","🙄","😬","🤥","😌","😔","😪","🤤","😴","😷","🤒","🤕","🤢","🤮","🥵","🥶","🥴","😵","🤯","🤠","🥳","🥸","😎","🤓","🧐","😕","😟","🙁","😮","😯","😲","😳","🥺","🥹","😦","😧","😨","😰","😥","😢","😭","😱","😖","😣","😞","😓","😩","😫","🥱","😤","😡","😠","🤬","😈","👿","💀","☠️","💩","🤡","👹","👺","👻","👽","👾","🤖"],
+  "Hearts":["❤️","🧡","💛","💚","💙","💜","🖤","🤍","🤎","💔","❤️‍🔥","💕","💞","💓","💗","💖","💘","💝","👋","👍","👎","✊","👊","👏","🙌","🙏","💪","✌️","🤘","🤟"],
+  "Animals":["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🐔","🐧","🐦","🦆","🦅","🦉","🦇","🐺","🐴","🦄","🐝","🦋","🐌","🐞","🐢","🐍","🐙","🐬","🐳","🦈","🐊","🐘","🦒","🐎"],
+  "Nature":["🌵","🌲","🌳","🌴","🌱","🌿","🍀","🌺","🌻","🌹","🌷","🌼","🌸","💐","🍄","🌎","🌕","🌙","🌚","☀️","⭐","🌟","🌠","☁️","🌧️","⛈️","🌨️","❄️","⛄","🌬️","🌪️","🌈","🔥","💧","🌊","✨"],
+  "Food":["🍏","🍎","🍊","🍋","🍌","🍉","🍇","🍓","🍒","🍑","🍍","🥥","🍔","🍕","🍟","🌮","🍣","🍜","🍰","🍩","🍪","🍫","🍿","☕","🍵","🍷","🍺","🍸","🍹"],
+  "Activities":["⚽","🏀","🏈","⚾","🎾","🏆","🥇","🎯","🎮","🕹️","🧩","🎲","🎭","🎨","🎬","🎤","🎧","🎼","🎹","🥁","🎷","🎺","🎸","🎻"],
+  "Travel":["🚗","✈️","🚀","🛸","🚁","⛵","🚢","🏖️","🏝️","🏜️","🌋","⛰️","🏔️","🏕️","🏠","🏰","🗽","🎡","🎢","🎠"],
+  "Objects":["💻","📱","💡","🔦","📖","📚","✏️","💰","💎","🔑","🔒","🔮","🧪","🔬","🔭","💯","🎵","🎶","♾️","⚡","💥","🌀"]
 };
 
-// ============ EMOJI PICKER ============
 function buildEmojiPicker() {
   const grid = document.getElementById('emojiGrid');
   grid.innerHTML = '';
@@ -504,361 +587,161 @@ function filterEmojis() {
   const labels = document.querySelectorAll('.emoji-category-label');
   if (!q) { btns.forEach(b => b.style.display = ''); labels.forEach(l => l.style.display = ''); return; }
   labels.forEach(l => l.style.display = 'none');
-  btns.forEach(b => b.style.display = 'none');
-  // Simple: show all if search is short
-  btns.forEach(b => {
-    if (b.dataset.emoji && b.dataset.emoji.includes(q)) b.style.display = '';
-  });
-  // Always show all for now since emoji search by name is complex
-  if (q.length > 0) btns.forEach(b => b.style.display = '');
+  // If emojiMap hasn't loaded yet, show all emojis
+  if (Object.keys(emojiMap).length === 0) { btns.forEach(b => b.style.display = ''); return; }
+  const matching = new Set();
+  for (const [emoji, tags] of Object.entries(emojiMap)) {
+    if (tags.some(t => t.includes(q)) || emoji.includes(q)) matching.add(emoji);
+  }
+  btns.forEach(b => { b.style.display = matching.has(b.dataset.emoji) ? '' : 'none'; });
 }
 
 function togglePicker() {
   if (selectedEmojis.length >= 5) return;
-  const picker = document.getElementById('emojiPicker');
-  picker.classList.toggle('open');
-  if (picker.classList.contains('open')) {
-    document.getElementById('emojiSearch').focus();
-  }
+  const p = document.getElementById('emojiPicker');
+  p.classList.toggle('open');
+  if (p.classList.contains('open')) document.getElementById('emojiSearch').focus();
 }
 
 function addEmoji(emoji) {
   if (selectedEmojis.length >= 5) return;
   selectedEmojis.push(emoji);
   renderEmojis();
-  if (selectedEmojis.length >= 5) {
-    document.getElementById('emojiPicker').classList.remove('open');
-  }
-  updateGenerateBtn();
+  if (selectedEmojis.length >= 5) document.getElementById('emojiPicker').classList.remove('open');
+  updateBtn();
 }
 
-function removeEmoji(index) {
-  selectedEmojis.splice(index, 1);
-  renderEmojis();
-  updateGenerateBtn();
-}
+function removeEmoji(i) { selectedEmojis.splice(i, 1); renderEmojis(); updateBtn(); }
 
 function renderEmojis() {
-  const display = document.getElementById('emojiDisplay');
-  const placeholder = document.getElementById('emojiPlaceholder');
+  const d = document.getElementById('emojiDisplay');
+  const p = document.getElementById('emojiPlaceholder');
   document.querySelectorAll('.emoji-chip').forEach(el => el.remove());
-  if (selectedEmojis.length === 0) { placeholder.style.display = ''; }
-  else { placeholder.style.display = 'none'; }
+  p.style.display = selectedEmojis.length === 0 ? '' : 'none';
   selectedEmojis.forEach((e, i) => {
-    const chip = document.createElement('span');
-    chip.className = 'emoji-chip';
-    chip.textContent = e;
-    chip.onclick = () => removeEmoji(i);
-    display.appendChild(chip);
+    const c = document.createElement('span');
+    c.className = 'emoji-chip'; c.textContent = e;
+    c.onclick = () => removeEmoji(i);
+    d.appendChild(c);
   });
-  const trigger = document.getElementById('pickerTrigger');
-  trigger.disabled = selectedEmojis.length >= 5;
-  display.classList.toggle('active', selectedEmojis.length > 0);
+  document.getElementById('pickerTrigger').disabled = selectedEmojis.length >= 5;
+  d.classList.toggle('active', selectedEmojis.length > 0);
 }
 
-function updateGenerateBtn() {
-  document.getElementById('generateBtn').disabled = selectedEmojis.length < 3 || isGenerating;
-}
+function updateBtn() { document.getElementById('generateBtn').disabled = selectedEmojis.length < 3; }
 
-// Close picker on outside click
 document.addEventListener('click', (e) => {
-  const picker = document.getElementById('emojiPicker');
-  const trigger = document.getElementById('pickerTrigger');
-  if (!picker.contains(e.target) && e.target !== trigger) {
-    picker.classList.remove('open');
-  }
+  const pk = document.getElementById('emojiPicker');
+  const tr = document.getElementById('pickerTrigger');
+  if (!pk.contains(e.target) && e.target !== tr) pk.classList.remove('open');
 });
 
-// ============ MODE SELECTION ============
+// =============================================
+// MODE
+// =============================================
 function selectMode(mode) {
   currentMode = mode;
   document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
 }
 
-// ============ API KEY ============
-function openModal() {
-  const modal = document.getElementById('apiModal');
-  document.getElementById('apiKeyInput').value = localStorage.getItem('gemini_api_key') || '';
-  modal.classList.add('active');
-}
-
-function closeModal() { document.getElementById('apiModal').classList.remove('active'); }
-
-function saveApiKey() {
-  const key = document.getElementById('apiKeyInput').value.trim();
-  if (key) { localStorage.setItem('gemini_api_key', key); }
-  else { localStorage.removeItem('gemini_api_key'); }
-  closeModal();
-}
-
-function getApiKey() { return localStorage.getItem('gemini_api_key'); }
-
-// Prompt for key on load if not set
-window.addEventListener('DOMContentLoaded', () => {
-  buildEmojiPicker();
-  if (!getApiKey()) setTimeout(openModal, 500);
-});
-
-// ============ GENERATION ============
-async function generate() {
-  const key = getApiKey();
-  if (!key) { openModal(); return; }
+// =============================================
+// GENERATE
+// =============================================
+function generate() {
   if (selectedEmojis.length < 3) return;
-
-  isGenerating = true;
-  updateGenerateBtn();
-  document.getElementById('resultContainer').className = 'result-container';
-  document.getElementById('loading').classList.add('active');
-
-  const loadingTexts = {
-    album: ['Searching music libraries...', 'Matching vibes to albums...', 'Curating your perfect match...'],
-    story: ['Dreaming up characters...', 'Weaving a tale of wonder...', 'Adding a sprinkle of magic...'],
-    constellation: ['Mapping the night sky...', 'Connecting the stars...', 'Charting your constellation...']
-  };
-  let textIdx = 0;
-  const textEl = document.getElementById('loadingText');
-  const textInterval = setInterval(() => {
-    textIdx = (textIdx + 1) % loadingTexts[currentMode].length;
-    textEl.textContent = loadingTexts[currentMode][textIdx];
-  }, 1500);
-
-  try {
-    const prompt = buildPrompt();
-    const response = await callGemini(key, prompt);
-    const parsed = parseResponse(response);
-    renderResult(parsed);
-  } catch (err) {
-    console.error(err);
-    document.getElementById('resultContainer').innerHTML = `
-      <div class="story-card" style="text-align:center;">
-        <p style="color:#EF4444;font-weight:600;">Oops! Something went wrong.</p>
-        <p style="color:var(--text-secondary);margin-top:8px;">${err.message || 'Failed to generate. Please check your API key and try again.'}</p>
-      </div>`;
-    document.getElementById('resultContainer').className = 'result-container active';
-  } finally {
-    clearInterval(textInterval);
-    document.getElementById('loading').classList.remove('active');
-    isGenerating = false;
-    updateGenerateBtn();
-  }
-}
-
-function buildPrompt() {
-  const emojis = selectedEmojis.join(' ');
-
-  if (currentMode === 'album') {
-    return `You are given these emojis: ${emojis}
-
-Based on the mood, themes, and feelings these emojis evoke, suggest ONE real, existing music album that matches.
-
-IMPORTANT: The album MUST be a real album that actually exists. Do not invent albums.
-
-Respond in this EXACT JSON format (no markdown, no code blocks, just raw JSON):
-{
-  "albumTitle": "Album Name",
-  "artist": "Artist Name",
-  "year": 2020,
-  "genre": "Genre name",
-  "tracks": [
-    {"number": 1, "title": "Track Name", "emoji": "emoji that matches this track"},
-    {"number": 2, "title": "Track Name", "emoji": "emoji that matches this track"},
-    {"number": 3, "title": "Track Name", "emoji": "emoji that matches this track"},
-    {"number": 4, "title": "Track Name", "emoji": "emoji that matches this track"},
-    {"number": 5, "title": "Track Name", "emoji": "emoji that matches this track"}
-  ],
-  "review": "A short 2-sentence review of the album in relation to the emojis",
-  "reviewer": "A famous music publication name"
-}
-
-Pick up to 5 notable tracks from the album. Use emojis from the user's selection or related ones for each track.`;
-  }
-
-  if (currentMode === 'story') {
-    return `You are given these emojis: ${emojis}
-
-Write a short, whimsical bedtime story (about 150-200 words) inspired by these emojis. The story should be warm, cozy, and suitable for all ages. Include the emojis naturally within the narrative.
-
-Also provide a creative title for the story.
-
-Respond in this EXACT JSON format (no markdown, no code blocks, just raw JSON):
-{
-  "title": "Story Title",
-  "story": "The full story text with emojis woven in. Use \\n\\n for paragraph breaks.",
-  "readTime": "2 min read"
-}`;
-  }
-
-  if (currentMode === 'constellation') {
-    return `You are given these emojis: ${emojis}
-
-Pick a real constellation that matches the mood or theme of these emojis. Then describe how each emoji maps to a star in that constellation.
-
-Respond in this EXACT JSON format (no markdown, no code blocks, just raw JSON):
-{
-  "name": "Constellation Common Name",
-  "latin": "Latin name",
-  "description": "A 2-3 sentence description connecting the constellation's mythology to the emojis' themes.",
-  "stars": [
-    {"emoji": "${selectedEmojis[0]}", "label": "Star name or role", "x": 30, "y": 20},
-    {"emoji": "${selectedEmojis[1]}", "label": "Star name or role", "x": 70, "y": 35}
-    ${selectedEmojis.length >= 3 ? `,"emoji": "${selectedEmojis[2]}", "label": "Star name or role", "x": 50, "y": 60}` : ''}
-    ${selectedEmojis.length >= 4 ? `,{"emoji": "${selectedEmojis[3]}", "label": "Star name or role", "x": 25, "y": 75}` : ''}
-    ${selectedEmojis.length >= 5 ? `,{"emoji": "${selectedEmojis[4]}", "label": "Star name or role", "x": 80, "y": 80}` : ''}
-  ],
-  "connections": [[0,1],[1,2]${selectedEmojis.length >= 4 ? ',[2,3]' : ''}${selectedEmojis.length >= 5 ? ',[3,4]' : ''}]
-}
-
-IMPORTANT: x and y values should be percentages (0-100) representing positions in a square canvas. Spread them out nicely. Make sure the stars array has exactly ${selectedEmojis.length} entries, one per emoji in the order given. connections is an array of [starIndex, starIndex] pairs showing which stars to connect with lines.`;
-  }
-}
-
-async function callGemini(apiKey, prompt) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.9, maxOutputTokens: 1024 }
-    })
-  });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err?.error?.message || `API error: ${res.status}`);
-  }
-  const data = await res.json();
-  return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-}
-
-function parseResponse(text) {
-  // Extract JSON from response (handle markdown code blocks)
-  let json = text.trim();
-  const match = json.match(/```(?:json)?\s*([\s\S]*?)```/);
-  if (match) json = match[1].trim();
-  // Also try to find raw JSON
-  const braceStart = json.indexOf('{');
-  const braceEnd = json.lastIndexOf('}');
-  if (braceStart !== -1 && braceEnd !== -1) {
-    json = json.substring(braceStart, braceEnd + 1);
-  }
-  return JSON.parse(json);
-}
-
-// ============ RENDER RESULTS ============
-function renderResult(data) {
   const container = document.getElementById('resultContainer');
+  container.className = 'result-container';
 
-  if (currentMode === 'album') renderAlbum(container, data);
-  else if (currentMode === 'story') renderStory(container, data);
-  else if (currentMode === 'constellation') renderConstellation(container, data);
+  const loading = document.getElementById('loading');
+  const texts = { album:['Searching music libraries...','Matching vibes...'], story:['Dreaming up characters...','Weaving a tale...'], constellation:['Mapping the night sky...','Connecting stars...'] };
+  document.getElementById('loadingText').textContent = pickWord(texts[currentMode]);
+  loading.classList.add('active');
 
-  container.className = 'result-container active';
+  setTimeout(() => {
+    loading.classList.remove('active');
+    const tc = getTagsFromEmojis(selectedEmojis);
+    if (currentMode === 'album') genAlbum(tc);
+    else if (currentMode === 'story') genStory(tc);
+    else genConstellation(tc);
+    container.className = 'result-container active';
+  }, 600 + Math.random() * 500);
 }
 
-function renderAlbum(container, data) {
-  const tracksHTML = (data.tracks || []).map(t => `
-    <li>
-      <span class="track-num">${t.number}.</span>
-      <span class="track-emoji">${t.emoji}</span>
-      <span>${t.title}</span>
-    </li>
-  `).join('');
-
-  container.innerHTML = `
+function genAlbum(tc) {
+  const scored = albumsDB.map((a,i) => ({ a, i, s: scoreItem(tc, a.tags) - (i === lastAlbumIdx ? 5 : 0) }));
+  scored.sort((a,b) => b.s - a.s);
+  lastAlbumIdx = scored[0].i;
+  const album = scored[0].a;
+  const te = selectedEmojis.concat(selectedEmojis).slice(0, album.tracks.length);
+  const tracksHTML = album.tracks.map((t,i) => `<li><span class="track-num">${i+1}.</span><span class="track-emoji">${te[i]||'🎵'}</span><span>${t}</span></li>`).join('');
+  document.getElementById('resultContainer').innerHTML = `
     <div class="album-card">
-      <div class="album-header">
-        <div class="album-emojis">${selectedEmojis.join(' ')}</div>
-        <div class="album-badge">&#127925; Album</div>
-      </div>
+      <div class="album-header"><div class="album-emojis">${selectedEmojis.join(' ')}</div><div class="album-badge">&#127925; Album</div></div>
       <div class="album-body">
-        <div class="album-title">${selectedEmojis.join(' ')} — ${data.albumTitle}</div>
-        <div class="album-artist">${data.artist}</div>
-        <div class="album-year">${data.year}</div>
-        <div class="album-genre">Genre: ${data.genre}</div>
+        <div class="album-title">${selectedEmojis.join(' ')} — ${album.title}</div>
+        <div class="album-artist">${album.artist}</div><div class="album-year">${album.year}</div>
+        <div class="album-genre">Genre: ${album.genre}</div>
         <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;margin-bottom:8px;">Tracklist:</div>
         <ul class="album-tracklist">${tracksHTML}</ul>
-        <div class="album-review">
-          <p>"${data.review}"</p>
-          <div class="reviewer">— ${data.reviewer} ${'⭐'.repeat(Math.floor(Math.random()*2)+4)}</div>
-        </div>
+        <div class="album-review"><p>"${album.review}"</p><div class="reviewer">— ${album.reviewer} ${'⭐'.repeat(Math.floor(Math.random()*2)+4)}</div></div>
       </div>
-    </div>
-    <button class="regen-btn" onclick="generate()">&#x21bb; Regenerate</button>
-  `;
+    </div><button class="regen-btn" onclick="generate()">&#x21bb; Regenerate</button>`;
 }
 
-function renderStory(container, data) {
-  const paragraphs = data.story.split(/\n\n|\n/).filter(Boolean);
-  const storyHTML = paragraphs.map(p => `<p>${p}</p>`).join('<div class="story-divider">· · ·</div>');
-
-  container.innerHTML = `
+function genStory(tc) {
+  const allTags = Object.keys(tc);
+  const scored = storyTemplates.map((t,i) => ({ t, i, s: scoreItem(tc, t.tags) }));
+  scored.sort((a,b) => b.s - a.s);
+  const tmpl = scored[0].t;
+  const title = tmpl.title(selectedEmojis);
+  const story = tmpl.build(selectedEmojis, allTags);
+  const paras = story.split('\n\n').filter(Boolean);
+  const storyHTML = paras.map(p => `<p>${p}</p>`).join('<div class="story-divider">&middot; &middot; &middot;</div>');
+  document.getElementById('resultContainer').innerHTML = `
     <div class="story-card">
-      <div class="story-header">
-        <div class="story-moon">&#127769;</div>
-        <div class="story-meta">
-          <h3>${data.title}</h3>
-          <span>${data.readTime || '2 min read'}</span>
-        </div>
-      </div>
+      <div class="story-header"><div class="story-moon">&#127769;</div><div class="story-meta"><h3>${title}</h3><span>2 min read</span></div></div>
       <div class="story-emojis">${selectedEmojis.join(' ')}</div>
       <div class="story-text">${storyHTML}</div>
-    </div>
-    <button class="regen-btn" onclick="generate()">&#x21bb; Regenerate</button>
-  `;
+    </div><button class="regen-btn" onclick="generate()">&#x21bb; Regenerate</button>`;
 }
 
-function renderConstellation(container, data) {
-  const stars = data.stars || [];
-  const connections = data.connections || [];
+function genConstellation(tc) {
+  const scored = constellationsDB.map((c,i) => ({ c, i, s: scoreItem(tc, c.tags) - (i === lastConstIdx ? 5 : 0) }));
+  scored.sort((a,b) => b.s - a.s);
+  lastConstIdx = scored[0].i;
+  const c = scored[0].c;
+  const n = selectedEmojis.length;
+  const pos = c.positions.slice(0, n);
+  const names = c.starNames.slice(0, n);
+  const conn = c.connections.filter(([a,b]) => a < n && b < n);
 
-  // Generate random background stars
-  let bgStarsHTML = '';
-  for (let i = 0; i < 50; i++) {
-    const x = Math.random() * 100;
-    const y = Math.random() * 100;
-    const size = Math.random() * 2 + 1;
-    const opacity = Math.random() * 0.5 + 0.1;
-    bgStarsHTML += `<div class="bg-star" style="left:${x}%;top:${y}%;width:${size}px;height:${size}px;opacity:${opacity}"></div>`;
-  }
+  let bg = '';
+  for (let i = 0; i < 60; i++) { bg += `<div class="bg-star" style="left:${Math.random()*100}%;top:${Math.random()*100}%;width:${Math.random()*2+1}px;height:${Math.random()*2+1}px;opacity:${Math.random()*0.5+0.1}"></div>`; }
+  const stars = pos.map((p,i) => `<div class="constellation-star" style="left:${p.x}%;top:${p.y}%;transform:translate(-50%,-50%)">${selectedEmojis[i]}</div>`).join('');
+  const lines = conn.map(([a,b]) => pos[a]&&pos[b] ? `<line x1="${pos[a].x}%" y1="${pos[a].y}%" x2="${pos[b].x}%" y2="${pos[b].y}%"/>` : '').join('');
+  const legend = pos.map((_,i) => `<div class="legend-item"><div class="legend-dot"></div><span>${selectedEmojis[i]} ${names[i]}</span></div>`).join('');
 
-  // Stars
-  const starsHTML = stars.map((s, i) => `
-    <div class="constellation-star" style="left:${s.x}%;top:${s.y}%;transform:translate(-50%,-50%)">${s.emoji}</div>
-  `).join('');
-
-  // SVG lines
-  const linesHTML = connections.map(([a, b]) => {
-    if (!stars[a] || !stars[b]) return '';
-    return `<line x1="${stars[a].x}%" y1="${stars[a].y}%" x2="${stars[b].x}%" y2="${stars[b].y}%"/>`;
-  }).join('');
-
-  // Legend
-  const legendHTML = stars.map(s => `
-    <div class="legend-item">
-      <div class="legend-dot"></div>
-      <span>${s.emoji} ${s.label}</span>
-    </div>
-  `).join('');
-
-  container.innerHTML = `
+  document.getElementById('resultContainer').innerHTML = `
     <div class="constellation-card">
-      <div class="constellation-sky">
-        <div class="bg-stars">${bgStarsHTML}</div>
-        <div class="constellation-canvas">
-          <svg class="constellation-lines" viewBox="0 0 100 100" preserveAspectRatio="none">${linesHTML}</svg>
-          ${starsHTML}
-        </div>
+      <div class="constellation-sky"><div class="bg-stars">${bg}</div>
+        <div class="constellation-canvas"><svg class="constellation-lines" viewBox="0 0 100 100" preserveAspectRatio="none">${lines}</svg>${stars}</div>
       </div>
       <div class="constellation-info">
-        <div class="constellation-name">${data.name}</div>
-        <div class="constellation-latin">${data.latin}</div>
-        <div class="constellation-desc">${data.description}</div>
-        <div class="constellation-legend">${legendHTML}</div>
+        <div class="constellation-name">${c.name}</div><div class="constellation-latin">${c.latin}</div>
+        <div class="constellation-desc">${c.description}</div>
+        <div class="constellation-legend">${legend}</div>
       </div>
-    </div>
-    <button class="regen-btn" onclick="generate()">&#x21bb; Regenerate</button>
-  `;
+    </div><button class="regen-btn" onclick="generate()">&#x21bb; Regenerate</button>`;
 }
+
+// INIT — build picker immediately, load JSON data in parallel
+window.addEventListener('DOMContentLoaded', () => {
+  buildEmojiPicker();
+  loadData().catch(err => {
+    console.warn('Could not load JSON data files:', err.message);
+    console.warn('If using file://, please serve via a local server (e.g. python3 -m http.server)');
+  });
+});
 </script>
 </body>
 </html>

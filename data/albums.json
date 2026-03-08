@@ -1,0 +1,372 @@
+[
+  {
+    "title": "For Emma, Forever Ago",
+    "artist": "Bon Iver",
+    "year": 2007,
+    "genre": "Indie Folk",
+    "tags": ["sad","melancholy","winter","cold","forest","nature","lonely","emotional","quiet","acoustic","isolation","snow"],
+    "tracks": ["Flume","Lump Sum","Skinny Love","The Wolves (Act I and II)","Blindsided"],
+    "review": "A raw, deeply emotional winter album that feels like being alone in a snow-covered cabin.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Random Access Memories",
+    "artist": "Daft Punk",
+    "year": 2013,
+    "genre": "Electronic / Disco",
+    "tags": ["party","fun","dancing","retro","robot","tech","celebration","night","nightlife","cool","digital","smooth","fancy"],
+    "tracks": ["Give Life Back to Music","Giorgio by Moroder","Lose Yourself to Dance","Get Lucky","Instant Crush"],
+    "review": "A masterful fusion of electronic precision and human groove that redefined modern disco.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "good kid, m.A.A.d city",
+    "artist": "Kendrick Lamar",
+    "year": 2012,
+    "genre": "Hip-Hop",
+    "tags": ["urban","storytelling","dark","intense","struggle","angry","strong","power","city","dramatic"],
+    "tracks": ["Sherane a.k.a Master Splinter's Daughter","Bitch, Don't Kill My Vibe","Backseat Freestyle","Money Trees","Swimming Pools (Drank)"],
+    "review": "A vivid coming-of-age story told through some of the most compelling hip-hop ever recorded.",
+    "reviewer": "NME"
+  },
+  {
+    "title": "In Rainbows",
+    "artist": "Radiohead",
+    "year": 2007,
+    "genre": "Alternative Rock",
+    "tags": ["dreamy","melancholy","thinking","curious","creative","emotional","beautiful","ethereal","art","mysterious"],
+    "tracks": ["15 Step","Bodysnatchers","Nude","Weird Fishes/Arpeggi","Reckoner"],
+    "review": "A warm yet haunting collection that captures the tension between beauty and unease.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Rumours",
+    "artist": "Fleetwood Mac",
+    "year": 1977,
+    "genre": "Soft Rock",
+    "tags": ["heartbreak","love","romance","bittersweet","emotional","classic","warm","passion","drama","touching"],
+    "tracks": ["Second Hand News","Dreams","Never Going Back Again","Don't Stop","Go Your Own Way"],
+    "review": "Born from heartbreak, Rumours transforms personal devastation into timeless, universal art.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Blonde",
+    "artist": "Frank Ocean",
+    "year": 2016,
+    "genre": "R&B / Art Pop",
+    "tags": ["dreamy","emotional","love","introspective","bittersweet","ocean","calm","beautiful","nostalgic","romantic","touching"],
+    "tracks": ["Nikes","Ivy","Pink + White","Solo","Nights"],
+    "review": "A shimmering, boundary-dissolving exploration of love, loss, and memory.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Abbey Road",
+    "artist": "The Beatles",
+    "year": 1969,
+    "genre": "Rock",
+    "tags": ["classic","sunshine","happy","warm","love","bright","cheerful","timeless","fun","creative","harmony"],
+    "tracks": ["Come Together","Something","Maxwell's Silver Hammer","Here Comes the Sun","Because"],
+    "review": "The Beatles' majestic farewell, a sunlit masterpiece of melody and innovation.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "ANTI",
+    "artist": "Rihanna",
+    "year": 2016,
+    "genre": "R&B / Pop",
+    "tags": ["confident","bold","love","nightlife","party","fierce","cool","passionate","independent","strong","sly"],
+    "tracks": ["Consideration","James Joint","Kiss It Better","Work","Needed Me"],
+    "review": "ANTI is Rihanna at her most daring — bold, unfiltered, and irresistibly cool.",
+    "reviewer": "NME"
+  },
+  {
+    "title": "Kind of Blue",
+    "artist": "Miles Davis",
+    "year": 1959,
+    "genre": "Jazz",
+    "tags": ["jazz","smooth","calm","night","dreamy","elegant","cool","sophisticated","peaceful","moonlit","mysterious"],
+    "tracks": ["So What","Freddie Freeloader","Blue in Green","All Blues","Flamenco Sketches"],
+    "review": "The most important jazz album ever made — a meditation in blue that transcends genre.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "folklore",
+    "artist": "Taylor Swift",
+    "year": 2020,
+    "genre": "Indie Folk / Alternative",
+    "tags": ["forest","nature","storytelling","autumn","melancholy","cozy","dreamy","quiet","emotional","romantic","nostalgic","gentle"],
+    "tracks": ["the 1","cardigan","the last great american dynasty","exile","betty"],
+    "review": "A lush, literary retreat into imagination — Taylor Swift's most introspective work.",
+    "reviewer": "The Guardian"
+  },
+  {
+    "title": "The Dark Side of the Moon",
+    "artist": "Pink Floyd",
+    "year": 1973,
+    "genre": "Progressive Rock",
+    "tags": ["space","dark","mysterious","philosophical","psychedelic","time","death","money","lunatic","dreamy","vast","hypnotic"],
+    "tracks": ["Speak to Me/Breathe","Time","The Great Gig in the Sky","Money","Us and Them"],
+    "review": "A cosmic journey through the human condition that remains unmatched in ambition and execution.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Lemonade",
+    "artist": "Beyoncé",
+    "year": 2016,
+    "genre": "R&B / Pop",
+    "tags": ["empowerment","love","heartbreak","fierce","strong","passionate","emotional","angry","triumphant","bold","power"],
+    "tracks": ["Pray You Catch Me","Hold Up","Sorry","Freedom","All Night"],
+    "review": "A radical, genre-defying opus that transforms pain into power and vulnerability into victory.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "My Beautiful Dark Twisted Fantasy",
+    "artist": "Kanye West",
+    "year": 2010,
+    "genre": "Hip-Hop / Art Pop",
+    "tags": ["grand","ambitious","dramatic","dark","luxury","creative","bold","chaotic","passionate","art","explosive","rich"],
+    "tracks": ["Dark Fantasy","Gorgeous","POWER","All of the Lights","Runaway"],
+    "review": "A sprawling, maximalist masterpiece that turns excess into transcendence.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Vespertine",
+    "artist": "Björk",
+    "year": 2001,
+    "genre": "Electronic / Art Pop",
+    "tags": ["winter","frozen","delicate","intimate","magical","ethereal","crystal","snow","gentle","love","whisper","dreamy"],
+    "tracks": ["Hidden Place","Cocoon","It's Not Up to You","Pagan Poetry","Unison"],
+    "review": "An impossibly delicate winter album, like snowflakes forming symphonies.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Currents",
+    "artist": "Tame Impala",
+    "year": 2015,
+    "genre": "Psychedelic Pop",
+    "tags": ["psychedelic","dreamy","heartbreak","transformation","swirling","colorful","hypnotic","dance","bittersweet","trippy"],
+    "tracks": ["Let It Happen","Nangs","Eventually","The Less I Know the Better","New Person, Same Old Mistakes"],
+    "review": "A shimmering psychedelic pop marvel about the dizzying rush of personal transformation.",
+    "reviewer": "NME"
+  },
+  {
+    "title": "Ctrl",
+    "artist": "SZA",
+    "year": 2017,
+    "genre": "R&B / Neo-Soul",
+    "tags": ["vulnerable","love","insecure","emotional","romantic","warm","raw","honest","young","bittersweet","gentle"],
+    "tracks": ["Supermodel","Love Galore","The Weekend","Broken Clocks","Garden (Say It Like Dat)"],
+    "review": "Brutally honest and beautifully vulnerable, Ctrl is a masterclass in emotional R&B.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Melodrama",
+    "artist": "Lorde",
+    "year": 2017,
+    "genre": "Art Pop / Electropop",
+    "tags": ["party","lonely","youth","dramatic","emotional","heartbreak","dancing","bittersweet","night","growing-up"],
+    "tracks": ["Green Light","Sober","Homemade Dynamite","The Louvre","Liability"],
+    "review": "A dazzling portrait of young adulthood — the ecstasy and the hangover, all in one album.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "AM",
+    "artist": "Arctic Monkeys",
+    "year": 2013,
+    "genre": "Indie Rock",
+    "tags": ["cool","nightlife","desire","dark","leather","rock","sly","confident","seductive","night","urban"],
+    "tracks": ["Do I Wanna Know?","R U Mine?","One for the Road","Arabella","Why'd You Only Call Me When You're High?"],
+    "review": "Sleek, seductive, and dripping with late-night swagger.",
+    "reviewer": "NME"
+  },
+  {
+    "title": "Arrival",
+    "artist": "ABBA",
+    "year": 1976,
+    "genre": "Pop / Disco",
+    "tags": ["dancing","happy","party","love","retro","celebration","fun","bright","pop","cheerful","disco"],
+    "tracks": ["When I Kissed the Teacher","Dancing Queen","My Love, My Life","Knowing Me, Knowing You","Money, Money, Money"],
+    "review": "Pure pop perfection — the album that gave the world 'Dancing Queen' and cemented ABBA as legends.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Innervisions",
+    "artist": "Stevie Wonder",
+    "year": 1973,
+    "genre": "Soul / Funk",
+    "tags": ["sunshine","joy","spiritual","social","warm","groove","funky","hopeful","bright","love","soulful","happy"],
+    "tracks": ["Too High","Visions","Living for the City","Golden Lady","He's Misstra Know-It-All"],
+    "review": "A visionary masterwork of soul and social conscience, radiating warmth and genius.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Future Nostalgia",
+    "artist": "Dua Lipa",
+    "year": 2020,
+    "genre": "Pop / Disco",
+    "tags": ["dancing","party","confident","fun","disco","retro","night","energetic","bold","pop","cool","celebration"],
+    "tracks": ["Future Nostalgia","Don't Start Now","Cool","Physical","Levitating"],
+    "review": "An irresistible retro-future pop gem built for the dancefloor.",
+    "reviewer": "NME"
+  },
+  {
+    "title": "Blue",
+    "artist": "Joni Mitchell",
+    "year": 1971,
+    "genre": "Folk",
+    "tags": ["sad","vulnerable","love","heartbreak","ocean","travel","emotional","honest","gentle","poetic","lonely","acoustic"],
+    "tracks": ["All I Want","My Old Man","Little Green","Blue","River"],
+    "review": "Arguably the greatest confessional album ever made — raw, poetic, and eternally moving.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Thriller",
+    "artist": "Michael Jackson",
+    "year": 1982,
+    "genre": "Pop / R&B",
+    "tags": ["spooky","halloween","dancing","thriller","horror","fun","party","iconic","night","moonwalk","zombie","exciting"],
+    "tracks": ["Wanna Be Startin' Somethin'","Thriller","Beat It","Billie Jean","Human Nature"],
+    "review": "The best-selling album of all time — a flawless fusion of pop, funk, rock, and pure spectacle.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Hounds of Love",
+    "artist": "Kate Bush",
+    "year": 1985,
+    "genre": "Art Pop / Synth Pop",
+    "tags": ["dreamy","emotional","love","running","night","ethereal","dramatic","nature","ocean","rain","mystical","wild"],
+    "tracks": ["Running Up That Hill","Hounds of Love","The Big Sky","Cloudbusting","And Dream of Sheep"],
+    "review": "A visionary art-pop epic that moves from euphoric love to the depths of the ocean.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Channel Orange",
+    "artist": "Frank Ocean",
+    "year": 2012,
+    "genre": "R&B / Neo-Soul",
+    "tags": ["summer","dreamy","nostalgic","love","warm","ocean","sun","bittersweet","emotional","california","chill"],
+    "tracks": ["Thinkin Bout You","Fertilizer","Sierra Leone","Super Rich Kids","Pyramids"],
+    "review": "A hazy summer daydream of love, luxury, and longing in sun-soaked California.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Nevermind",
+    "artist": "Nirvana",
+    "year": 1991,
+    "genre": "Grunge / Alternative Rock",
+    "tags": ["angry","rebellious","loud","grunge","teen","frustrated","raw","chaotic","angsty","rock","wild","intense"],
+    "tracks": ["Smells Like Teen Spirit","In Bloom","Come as You Are","Breed","Lithium"],
+    "review": "The album that detonated the '90s — raw, furious, and impossibly catchy.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Born to Die",
+    "artist": "Lana Del Rey",
+    "year": 2012,
+    "genre": "Baroque Pop / Dream Pop",
+    "tags": ["nostalgic","melancholy","love","cinematic","summer","retro","sad","glamour","romantic","american","dreamy","death"],
+    "tracks": ["Born to Die","Blue Jeans","Video Games","Diet Mountain Dew","Summertime Sadness"],
+    "review": "A cinematic fever dream of doomed romance, vintage glamour, and melancholic beauty.",
+    "reviewer": "The Guardian"
+  },
+  {
+    "title": "Astroworld",
+    "artist": "Travis Scott",
+    "year": 2018,
+    "genre": "Hip-Hop / Psychedelic Rap",
+    "tags": ["trippy","carnival","exciting","psychedelic","fun","night","party","rollercoaster","thrill","space","wild","euphoric"],
+    "tracks": ["STARGAZING","CAROUSEL","SICKO MODE","ASTROTHUNDER","YOSEMITE"],
+    "review": "A psychedelic theme-park ride through hip-hop at its most ambitious and immersive.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Planet Her",
+    "artist": "Doja Cat",
+    "year": 2021,
+    "genre": "Pop / R&B",
+    "tags": ["alien","space","playful","sexy","fun","confident","tropical","summer","bouncy","feminine","colorful","dance"],
+    "tracks": ["Woman","Naked","Get Into It (Yuh)","Need to Know","Kiss Me More"],
+    "review": "A playful intergalactic pop journey — confident, catchy, and endlessly fun.",
+    "reviewer": "NME"
+  },
+  {
+    "title": "After Hours",
+    "artist": "The Weeknd",
+    "year": 2020,
+    "genre": "Synth-Pop / R&B",
+    "tags": ["dark","night","heartbreak","neon","city","lonely","cinematic","dramatic","80s","retro","sinister","emotional"],
+    "tracks": ["Alone Again","Too Late","Hardest to Love","Blinding Lights","After Hours"],
+    "review": "A neon-noir descent into heartbreak — cinematic, brooding, and utterly captivating.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "A Night at the Opera",
+    "artist": "Queen",
+    "year": 1975,
+    "genre": "Rock / Progressive",
+    "tags": ["grand","dramatic","opera","theatrical","ambitious","rock","epic","eccentric","creative","bold","queen","champion"],
+    "tracks": ["Death on Two Legs","Lazing on a Sunday Afternoon","I'm in Love with My Car","You're My Best Friend","Bohemian Rhapsody"],
+    "review": "Six minutes of Bohemian Rhapsody alone changed music forever, and the rest of the album is just as audacious.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Immunity",
+    "artist": "Clairo",
+    "year": 2019,
+    "genre": "Indie Pop / Bedroom Pop",
+    "tags": ["shy","soft","gentle","love","vulnerable","bedroom","quiet","intimate","warm","young","sweet","tender"],
+    "tracks": ["Alewife","Impossible","Closer to You","North","Bags"],
+    "review": "Tender, understated indie pop that finds profound beauty in quiet vulnerability.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "Punisher",
+    "artist": "Phoebe Bridgers",
+    "year": 2020,
+    "genre": "Indie Rock / Slowcore",
+    "tags": ["sad","lonely","space","ghost","death","quiet","emotional","dark","introspective","haunting","poetic","melancholy"],
+    "tracks": ["DVD Menu","Garden Song","Kyoto","Punisher","I Know the End"],
+    "review": "Hauntingly beautiful songs about loneliness, death, and the end of the world.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "The Miseducation of Lauryn Hill",
+    "artist": "Lauryn Hill",
+    "year": 1998,
+    "genre": "Neo-Soul / Hip-Hop",
+    "tags": ["soulful","love","empowerment","spiritual","warm","raw","honest","emotional","passionate","maternal","strong"],
+    "tracks": ["Lost Ones","Ex-Factor","To Zion","Doo Wop (That Thing)","Everything Is Everything"],
+    "review": "A once-in-a-generation masterpiece — soul, hip-hop, and truth in perfect harmony.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Titanic Rising",
+    "artist": "Weyes Blood",
+    "year": 2019,
+    "genre": "Baroque Pop / Chamber Pop",
+    "tags": ["cinematic","ocean","dreamy","nostalgic","grand","beautiful","melancholy","romantic","timeless","ethereal","vast"],
+    "tracks": ["A Lot's Gonna Change","Andromeda","Everyday","Something to Believe","Titanic Rising"],
+    "review": "A sweeping, cinematic meditation on modern loneliness wrapped in orchestral beauty.",
+    "reviewer": "Pitchfork"
+  },
+  {
+    "title": "A Love Supreme",
+    "artist": "John Coltrane",
+    "year": 1965,
+    "genre": "Jazz",
+    "tags": ["spiritual","prayer","grateful","hope","jazz","passionate","transcendent","pure","divine","peaceful","deep"],
+    "tracks": ["Acknowledgement","Resolution","Pursuance","Psalm","(Bonus: Acknowledgement alt take)"],
+    "review": "A profoundly spiritual jazz masterpiece that reaches for the divine and finds it.",
+    "reviewer": "Rolling Stone"
+  },
+  {
+    "title": "Wish You Were Here",
+    "artist": "Pink Floyd",
+    "year": 1975,
+    "genre": "Progressive Rock",
+    "tags": ["absence","loss","nostalgic","wish","melancholy","space","philosophical","ethereal","warm","friendship","longing"],
+    "tracks": ["Shine On You Crazy Diamond (Parts I-V)","Welcome to the Machine","Have a Cigar","Wish You Were Here","Shine On You Crazy Diamond (Parts VI-IX)"],
+    "review": "A profoundly moving elegy to lost friends and vanished innocence.",
+    "reviewer": "Rolling Stone"
+  }
+]
