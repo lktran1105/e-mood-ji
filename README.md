@@ -25,4 +25,4 @@ Powered by Google Gemini API.
 - Google Gemini 2.0 Flash API
 - Space Grotesk + DM Sans fonts
 
-## Built at [Your Hackathon Name]
+## Built at HackCU12
